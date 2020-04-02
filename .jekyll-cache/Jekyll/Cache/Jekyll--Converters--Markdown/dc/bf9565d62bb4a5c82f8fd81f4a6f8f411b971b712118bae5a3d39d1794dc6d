@@ -1,0 +1,38 @@
+I"d<p>Servlet을 이용하여 사용자가 Url 입력시 해당하는 웹 페이지를 전달해 주는 기능을 한다.</p>
+
+<h2 id="servelt-생성-및-설정">Servelt 생성 및 설정</h2>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78260704-391cdd00-7539-11ea-8cca-5e2de82bffee.png" alt="servlet01" width="100%" /></p>
+
+<p>Project에서 New -&gt; Servlet 을 통해 새로운 Servlet을 생성한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78260709-3a4e0a00-7539-11ea-9d55-4e0c0517ca86.png" alt="servlet02" width="400px" /></p>
+
+<p>Java package와 Class name을 입력해준 후, Next 버튼을 누른다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78260715-3b7f3700-7539-11ea-97b4-d6e17bad35db.png" alt="servlet03" width="400px" /></p>
+
+<p>위에서 보이는 URL mappings:에 나오는 Url을 통해 해당 Servlet에 접근이 가능하다.
+<br />ex) https://localhost:8080/{Project 이름}/{Servlet 이름 URL mappings}</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78260717-3cb06400-7539-11ea-99c7-ec69afc55d05.png" alt="servlet04" width="400px" /></p>
+
+<p>해당 Servlet에서 사용할 함수들을 선택하면 자동으로 생성이 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78260722-3de19100-7539-11ea-95a1-fa9065e7e190.png" alt="servlet05" width="100%" /></p>
+
+<p>현재는 웹 페이지에 Hello Servlet이라는 글자가 나타나게 하기 위해서 다음과 같이 doGet함수를 변경해 주었다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+	<span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"Text/html;charset=UTF-8"</span><span class="o">);</span>
+	<span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+	<span class="n">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"&lt;h1&gt;Hello servelet&lt;/h1&gt;"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78261652-733aae80-753a-11ea-8051-735adc92b37c.png" alt="servlet06" width="100%" /></p>
+
+<p>그 후, Servlet -&gt; Run As -&gt; Run on Server 클릭시 로컬 서버가 가동이 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78261661-746bdb80-753a-11ea-9001-dd8b4e9e83e1.png" alt="servlet07" width="100%" /></p>
+:ET
