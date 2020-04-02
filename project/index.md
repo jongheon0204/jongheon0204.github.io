@@ -1,8 +1,8 @@
 ---
-layout: home 
-permalink: /project/
-title: Project 
-categories: project 
-order: 1 
+layout: blog 
+title: Project
 appear: true
+categories: project
+order: 2
+permalink: /project
 ---

@@ -1,0 +1,144 @@
+I"Fo<p><img src="https://user-images.githubusercontent.com/17156386/78244490-b25c0600-7520-11ea-9a0e-82c20d73ac74.png" alt="백준1938" /></p>
+
+<p>상,하,좌,우,회전이 가능한 길이 3의 통나무를 B위치에서 E위치까지 옮기는게 최소 몇번 옮겨야 하는지 구하는 문제이다.</p>
+
+<ul>
+  <li>길이가 3이지만 통나무는 가로, 세로로만 둘 수 있다.</li>
+  <li>즉 통나무는 가운데의 좌표와 통나무가 가로인지, 세로인지의 정보를 통해 확인이 가능하다.</li>
+  <li>가운데의 좌표만을 이용하므로 (상,하) , (좌,우)는 동일한 함수에 다른 값을 적용할 수 있다.</li>
+</ul>
+
+<details>
+<summary> 코드 보기</summary>
+<div>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#define vi vector&lt;int&gt;
+#define MAX 987654321
+#define pii pair&lt;int,int&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">// 통나무 가운데의 좌표값과 가로(1), 세로(0)의 값을 이용하여 통나무의 정보를 나타낸다.</span>
+<span class="k">struct</span> <span class="n">Wood</span><span class="p">{</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">dir</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="c1">// 통나무의 시작 지점과 도착지점 정보</span>
+<span class="n">Wood</span> <span class="n">wood</span><span class="p">,</span><span class="n">des</span><span class="p">;</span>
+<span class="c1">// Queue를 이용하여 너비 우선 탐색을 실시</span>
+<span class="n">queue</span><span class="o">&lt;</span><span class="n">Wood</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">;</span>
+<span class="c1">// 통나무가 가로인지 세로인지에 따라서 val[0],val[1]에 움직인 값을 저장.</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">val</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="c1">// 평지의 위치 정보</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">land</span><span class="p">;</span>
+
+<span class="c1">// 두개의 Wood 구조체가 동일한지 판단</span>
+<span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="k">const</span> <span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">){</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">dir</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">dir</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 통나무가 어디 방향으로 누워져 있는지 확인</span>
+<span class="kt">int</span> <span class="nf">Direction</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">){</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">first</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">first</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">isRange</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span> <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="o">&lt;=</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">&lt;</span><span class="n">n</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span><span class="o">&lt;=</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">n</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="c1">// 통나무를 상(v=-1), 하(v=1)로 옮길수 있는지 확인 </span>
+<span class="kt">bool</span> <span class="nf">Up_Down</span><span class="p">(</span><span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">wood</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">dir</span><span class="p">){</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isRange</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">v</span><span class="p">,</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="o">||</span> <span class="n">land</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">v</span><span class="p">][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isRange</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">||</span> <span class="n">land</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="p">)][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">wood</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 통나무를 좌(v=-1), 우(v=1)로 옮길수 있는지 확인</span>
+<span class="kt">bool</span> <span class="nf">Left_Right</span><span class="p">(</span><span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">wood</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">dir</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isRange</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span> <span class="o">||</span> <span class="n">land</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span><span class="k">return</span> <span class="nb">false</span><span class="p">;</span>	
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isRange</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">v</span><span class="p">)</span> <span class="o">||</span> <span class="n">land</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">wood</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 통나무를 회전할 수 있는지 확인</span>
+<span class="kt">bool</span> <span class="nf">Rotate</span><span class="p">(</span><span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">wood</span><span class="p">){</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="n">y</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isRange</span><span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">||</span> <span class="n">land</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">wood</span><span class="p">.</span><span class="n">dir</span> <span class="o">=</span> <span class="p">(</span><span class="n">wood</span><span class="p">.</span><span class="n">dir</span><span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">isFinish</span><span class="p">(</span><span class="kt">int</span> <span class="n">curVal</span><span class="p">,</span><span class="n">Wood</span> <span class="o">&amp;</span> <span class="n">next</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">next</span> <span class="o">==</span> <span class="n">des</span><span class="p">){</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">curVal</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;}</span>
+	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curVal</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">val</span><span class="p">[</span><span class="n">next</span><span class="p">.</span><span class="n">dir</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">x</span><span class="p">]){</span>
+		<span class="n">val</span><span class="p">[</span><span class="n">next</span><span class="p">.</span><span class="n">dir</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">next</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">curVal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">MAX</span><span class="p">));</span>
+	<span class="n">land</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">land</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">B</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">E</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">land</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'B'</span><span class="p">){</span>
+				<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">land</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'E'</span><span class="p">){</span>
+				<span class="n">E</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+	<span class="n">sort</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">B</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">E</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	
+	<span class="n">wood</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">first</span><span class="p">;</span> <span class="n">wood</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">second</span><span class="p">,</span> <span class="n">wood</span><span class="p">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">Direction</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+	<span class="n">des</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">first</span><span class="p">;</span> <span class="n">des</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">second</span><span class="p">,</span> <span class="n">des</span><span class="p">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">Direction</span><span class="p">(</span><span class="n">E</span><span class="p">);</span>
+
+	<span class="n">val</span><span class="p">[</span><span class="n">wood</span><span class="p">.</span><span class="n">dir</span><span class="p">][</span><span class="n">wood</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">wood</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">wood</span><span class="p">);</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+		<span class="n">Wood</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+		<span class="kt">int</span> <span class="n">curVal</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="n">cur</span><span class="p">.</span><span class="n">dir</span><span class="p">][</span><span class="n">cur</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">cur</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+		<span class="n">Wood</span> <span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">Up_Down</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isFinish</span><span class="p">(</span><span class="n">curVal</span><span class="p">,</span><span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">Up_Down</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isFinish</span><span class="p">(</span><span class="n">curVal</span><span class="p">,</span><span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">Left_Right</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isFinish</span><span class="p">(</span><span class="n">curVal</span><span class="p">,</span><span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">Left_Right</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isFinish</span><span class="p">(</span><span class="n">curVal</span><span class="p">,</span><span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">Rotate</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isFinish</span><span class="p">(</span><span class="n">curVal</span><span class="p">,</span><span class="n">next</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"0"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </div>
+</details>
+:ET

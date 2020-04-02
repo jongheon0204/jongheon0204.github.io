@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>2169 로봇 조종하기 | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="2169 로봇 조종하기" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="공부한 내용 및 프로젝트 정리 블로그" />
+<meta property="og:description" content="공부한 내용 및 프로젝트 정리 블로그" />
+<link rel="canonical" href="http://localhost:4000/algorithm/baekjoon/2020/03/22/2169.html" />
+<meta property="og:url" content="http://localhost:4000/algorithm/baekjoon/2020/03/22/2169.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-22T13:44:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/algorithm/baekjoon/2020/03/22/2169.html","headline":"2169 로봇 조종하기","dateModified":"2020-03-22T13:44:00+09:00","datePublished":"2020-03-22T13:44:00+09:00","description":"공부한 내용 및 프로젝트 정리 블로그","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/algorithm/baekjoon/2020/03/22/2169.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body"><header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<a class = "navbar-brand" href="#">Jongheon's Blog</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/algorithm>Algorithm</a>
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/codeforces>Codeforces</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+<main class="page-content" aria-label="Content">
+			<div class="wrapper">
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">2169 로봇 조종하기</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-03-22T13:44:00+09:00" itemprop="datePublished">Mar 22, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img width="100%" alt="baekjoon2169" src="https://user-images.githubusercontent.com/17156386/77242565-0fafa780-6c43-11ea-8f96-08260f25a2e1.png" /></p>
+
+<p>왼쪽, 오른쪽, 아래쪽 으로 이동할 수 있는 로봇이 (1,1) 위치에서 (n,m) 위치로 이동할 때, 방문한 장소들의 값들을 더했을때 최대 값을 구하는 문제이다.
+<br />(한번 방문한 장소는 다시 방문하면 안된다는 조건이 존재한다)</p>
+
+<ul>
+  <li>로봇이 왼쪽, 오른쪽, 위에서 왔을 때의 값을 저장하는 배열을 각각 만들어준다.</li>
+  <li>(1,1) 부터 출발하기 때문에 첫번째 줄에서는 오른쪽으로의 이동만 가능하다.</li>
+  <li>2번째 행부터는 이전 행의 왼쪽, 오른쪽 배열에 저장된 값 중 큰 값을 저장한다.</li>
+  <li>왼쪽은 0부터, 오른쪽은 m-1 부터 시작하여 차례대로 큰 값을 저장한다.</li>
+  <li>모든 계산이 끝난 후에는 왼쪽, 오른쪽, 위쪽 배열에 저장된 값들 중 가장 큰 값을 출력해준다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span><span class="c1">// 절대값이 100을 넘지 않은 정수가 저장된다 즉 모든 값이 -100일 수도 있다.</span>
+<span class="cp">#define INIT -987654
+#define vi vector&lt;int&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+<span class="c1">// fr: 오른쪽에서 온 로봇의 값, fl : 왼쪽, fu : 위</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">,</span><span class="n">fr</span><span class="p">,</span><span class="n">fl</span><span class="p">,</span><span class="n">fu</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>	
+	<span class="n">fr</span> <span class="o">=</span> <span class="n">fl</span> <span class="o">=</span> <span class="n">fu</span> <span class="o">=</span> <span class="n">map</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vi</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">INIT</span><span class="p">));</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="c1">// 첫번째 행에서는 로봇이 오른쪽으로만 이동이 가능.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">fl</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">map</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">?</span><span class="n">fl</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">// 두번째 행부터는 위쪽에서 내려오는 값, 왼쪽, 오른쪽에서 오는 값을 계산</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">fu</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">fr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">fl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+		<span class="p">}</span>
+		<span class="n">fl</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">fu</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+		<span class="n">fr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fu</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">fl</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">fu</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">fl</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">--</span><span class="p">){</span>
+			<span class="n">fr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">fu</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">fr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">map</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">max</span><span class="p">(</span><span class="n">fr</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">max</span><span class="p">(</span><span class="n">fl</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">fu</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/algorithm/baekjoon/2020/03/22/2169.html" hidden></a>
+</article>
+
+			</div>
+		</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jongheon&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Jongheon&#39;s Blog</li><li><a class="u-email" href="mailto:jongheon3651@gmail.com">jongheon3651@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jongheon0204"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jongheon0204</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>공부한 내용 및 프로젝트 정리 블로그</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>
