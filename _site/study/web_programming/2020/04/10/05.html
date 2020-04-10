@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Web UI 개발 | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Web UI 개발" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1. Window 객체" />
+<meta property="og:description" content="1. Window 객체" />
+<link rel="canonical" href="http://localhost:4000/study/web_programming/2020/04/10/05.html" />
+<meta property="og:url" content="http://localhost:4000/study/web_programming/2020/04/10/05.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-10T15:13:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/study/web_programming/2020/04/10/05.html","description":"1. Window 객체","headline":"Web UI 개발","dateModified":"2020-04-10T15:13:00+09:00","datePublished":"2020-04-10T15:13:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/study/web_programming/2020/04/10/05.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/home.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body">
+		<header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Study</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/study/Web_Programming>Web Programming</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/algorithm>Algorithm</a>
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/codeforces>Codeforces</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+
+		<main class="page-content" aria-label="Content">
+			<div class = "wrapper">
+	<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	
+	  <header class="post-header">
+	    <h1 class="post-title p-name" itemprop="name headline">05. Web UI 개발</h1>
+	    <p class="post-meta">
+	      <time class="dt-published" datetime="2020-04-10T15:13:00+09:00" itemprop="datePublished">Apr 10, 2020
+	      </time></p>
+	  </header>
+	
+	  <div class="post-content e-content" itemprop="articleBody">
+	    <h2 id="1-window-객체">1. Window 객체</h2>
+
+<h3 id="01-window-객체의-특징">01. Window 객체의 특징</h3>
+
+<ul>
+  <li>전역객체로서 생략이 가능하다.</li>
+  <li>alert, setTimeout 등의 메서드가 존재한다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// window 생략 가능</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">경고창</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">경고창</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="02-settimeout">02. setTimeout</h3>
+
+<ul>
+  <li>인자로 함수를 받을 수 있다. (콜백함수)</li>
+  <li>비동기로 동작한다. (즉시 실행되지 않고 나중에 실행된다)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">run</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">run start</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">setTimeout</span><span class="dl">"</span><span class="p">);</span>
+	<span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">run end</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">begin</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">run</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">end</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="cm">/* begin
+run start
+run end
+end
+setTimeout (1000ms 후에 출력이 된다)*/</span>
+</code></pre></div></div>
+
+<h2 id="2-dom">2. DOM</h2>
+
+<h3 id="01-dom">01. DOM</h3>
+
+<ul>
+  <li>브라우저는 Html 코드를 DOM 객체의 트리구조 형태로 만들어 정보들을 기억한다.</li>
+  <li>JavaScript로는 Dom Tree를 탐색하기 힘들다(이를 위해 브라우저에서 DOM API를 제공한다)</li>
+</ul>
+
+<h3 id="02-dom-api">02. DOM API</h3>
+
+<ol>
+  <li>getElementById()
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">)</span> <span class="c1">// id가 nav인 태그를 가져온다.</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">).</span><span class="kd">class</span><span class="p">;</span> <span class="c1">// id가 nav인 태그의 class 정보 출력</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">block</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// id가 nav인 태그의 display 속성을 block으로 변경</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">String</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// id가 nav인 태그의 문자를 수정</span>
+</code></pre></div>    </div>
+  </li>
+  <li>querySelector()
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// querySelector의 매개변수로 css selector를 사용한다</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// div태그를 하나 반환</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#nav</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// id가 nav인 태그를 하나 반환</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">.nav</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// class가 nav인 태그를 하나 반환 </span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">.nav</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// class가 nav인 모든 태그를 반환</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="3-browser-event-event-object-event-handler">3. Browser Event, Event Object, Event Handler</h2>
+
+<h3 id="01-event">01. Event</h3>
+
+<ul>
+  <li>브라우저 화면 크기 변환, 마우스 조절등의 행위를 할때 이벤트가 발생한다.</li>
+  <li>addEventListener()를 통해 이벤트를 등록해줄 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+	<span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">nav click!!</span><span class="dl">"</span><span class="p">,</span><span class="nx">e</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="4-ajax-통신의-이해">4. Ajax 통신의 이해</h2>
+
+<h3 id="01-ajax-xmlhttprequest-통신">01. Ajax (XMLHttpRequest 통신)</h3>
+
+<ul>
+  <li>Ajax는 비동기로 서버로부터 데이터를 받아온다.</li>
+  <li>웹에서 데이터를 갱신할 때, 새로고침 없이 서버로부터 데이터를 받는다.</li>
+</ul>
+
+<h3 id="02-json">02. JSON</h3>
+
+<ul>
+  <li>표준적인 데이터 포맷 JSON(Javascript Object Notation)</li>
+  <li>서버와 클라이언트가 데이터 교환을 할때 사용한다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">ajax</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">oReq</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+	<span class="nx">oReq</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">load</span><span class="dl">"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+	<span class="p">});</span>
+	<span class="nx">oReq</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">http://www.example.org</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nx">oReq</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+	  </div><a class="u-url" href="/study/web_programming/2020/04/10/05.html" hidden></a>
+	</article>
+</div>
+
+		</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jongheon&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Jongheon&#39;s Blog</li><li><a class="u-email" href="mailto:jongheon3651@gmail.com">jongheon3651@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jongheon0204"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jongheon0204</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>공부한 내용 및 프로젝트 정리 블로그</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>

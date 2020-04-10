@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>1655 가운데를 말해요 | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="1655 가운데를 말해요" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="공부한 내용 및 프로젝트 정리 블로그" />
+<meta property="og:description" content="공부한 내용 및 프로젝트 정리 블로그" />
+<link rel="canonical" href="http://localhost:4000/algorithm/baekjoon/2020/04/09/1655.html" />
+<meta property="og:url" content="http://localhost:4000/algorithm/baekjoon/2020/04/09/1655.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-09T17:40:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/algorithm/baekjoon/2020/04/09/1655.html","description":"공부한 내용 및 프로젝트 정리 블로그","headline":"1655 가운데를 말해요","dateModified":"2020-04-09T17:40:00+09:00","datePublished":"2020-04-09T17:40:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/algorithm/baekjoon/2020/04/09/1655.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/home.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body">
+		<header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Study</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/study/Web_Programming>Web Programming</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/algorithm>Algorithm</a>
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/codeforces>Codeforces</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+
+		<main class="page-content" aria-label="Content">
+			<div class = "wrapper">
+	<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	
+	  <header class="post-header">
+	    <h1 class="post-title p-name" itemprop="name headline">1655 가운데를 말해요</h1>
+	    <p class="post-meta">
+	      <time class="dt-published" datetime="2020-04-09T17:40:00+09:00" itemprop="datePublished">Apr 9, 2020
+	      </time></p>
+	  </header>
+	
+	  <div class="post-content e-content" itemprop="articleBody">
+	    <p><img src="https://user-images.githubusercontent.com/17156386/78875733-4da52c00-7a89-11ea-9aff-23af3d402381.png" alt="백준1655" width="100%" /></p>
+
+<p>정수를 하나씩 외칠때 마다 지금까지 나왔던 수 중에서 중간값을 찾는 문제이다.</p>
+
+<ul>
+  <li>우선순위 큐 minHeap, maxHeap 2개를 만들어 이용한다.</li>
+  <li>minHeap은 중간 값보다 큰 값들을, maxHeap은 중간 이하의 값들을 저장한다.</li>
+  <li>maxHeap과 minHeap에 차례대로 추가해 주며 maxHeap의 top 값이 minHeap의 top 값보다 크다면 서로 교환해 준다.</li>
+</ul>
+
+<details>
+<smmary>코드 보기&lt;/summary&gt;
+<div>
+      <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">less</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">maxHeap</span><span class="p">;</span>
+	<span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">minHeap</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">val</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">val</span><span class="p">;</span>
+		<span class="c1">// maxHeap과 minHeap에 차례대로 숫자를 넣어준다.</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">minHeap</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">maxHeap</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">maxHeap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+		<span class="k">else</span> <span class="n">minHeap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+
+		<span class="c1">// maxHeap의 top 값이 minHeap의 top 값보다 크다면 서로 교환해준다.</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">maxHeap</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">minHeap</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">maxHeap</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">minHeap</span><span class="p">.</span><span class="n">top</span><span class="p">()){</span>
+			<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">maxHeap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">maxHeap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+			<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">minHeap</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">minHeap</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+			<span class="n">maxHeap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+			<span class="n">minHeap</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">maxHeap</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>      </div>
+    </div>
+&lt;/details&gt;
+</smmary></details>
+
+	  </div><a class="u-url" href="/algorithm/baekjoon/2020/04/09/1655.html" hidden></a>
+	</article>
+</div>
+
+		</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Jongheon&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Jongheon&#39;s Blog</li><li><a class="u-email" href="mailto:jongheon3651@gmail.com">jongheon3651@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jongheon0204"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jongheon0204</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>공부한 내용 및 프로젝트 정리 블로그</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>
