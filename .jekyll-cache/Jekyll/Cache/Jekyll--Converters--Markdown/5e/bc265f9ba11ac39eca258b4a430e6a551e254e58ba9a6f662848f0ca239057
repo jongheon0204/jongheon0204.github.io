@@ -1,0 +1,59 @@
+I"^
+<h2 id="1-jspjava-server-pages">1. JSP(Java Server Pages)</h2>
+
+<h3 id="01-생성">01. 생성</h3>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79037148-8704a580-7c09-11ea-8a0a-8f11f0a3d7a6.png" alt="JSP01" width="100%" /></p>
+<ul>
+  <li>WebContent에 Html,  Css, JavaScript 같은 파일을 넣어준다.</li>
+  <li>JSP도 WebContent에서 생성이 가능하다</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79037150-8835d280-7c09-11ea-9179-59e09a545422.png" alt="JSP02" width="500px" /></p>
+<ul>
+  <li>JSP의 이름을 넣어준 후 생성하면</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79037151-88ce6900-7c09-11ea-8c3d-24da2a735183.png" alt="JSP03" width="100%" /></p>
+<ul>
+  <li>위와 같이 JSP가 생성된다</li>
+</ul>
+
+<h3 id="02-특징">02. 특징</h3>
+
+<ul>
+  <li>JSP는 Servlet으로 바뀌어 동작한다.</li>
+  <li>Servlet으로 바뀐후, Life Cycle 동작</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* JSP를 생성한 후, 파일에 보이는 정보이다.
+&lt;%@ %&gt; 는 지시자로서 여기서는 page 정보를 나타내는 page 지시자이다.*/</span>
+
+<span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">"java"</span> <span class="n">contentType</span><span class="o">=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="n">pageEncoding</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="o">%&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li>contentType : 이전의 response.setContentType으로 설정해 주었던 것과 동일.</li>
+</ul>
+
+<h2 id="2-jsp-life-cycle">2. JSP Life Cycle</h2>
+
+<ul>
+  <li>eclipse-workspace/.metadata/org.eclipse.wet.server.core/tmp0/work/Catalina/localhost/firstWeb/org/apache/jsp</li>
+  <li>위 디렉토리에 들어가면 생성한 JSP가 Servlet으로 변환된 것을 확인할 수 있다.</li>
+</ul>
+
+<h3 id="01-jsp의-실행순서">01. JSP의 실행순서</h3>
+
+<ol>
+  <li>브라우저가 웹서버에 JSP에 대한 요청 정보를 전달</li>
+  <li>브라우저가 요청한 JSP가 최초로 요청했을 경우에는
+    <ul>
+      <li>JSP 코드가 Servlet 코드로 변환 (java 파일 생성)</li>
+      <li>Servlet 코드를 컴파일해 bytecode로 변환 (class 파일 생성)</li>
+      <li>Servlet 코드를 로딩하고 인스턴스를 생성</li>
+    </ul>
+  </li>
+  <li>Servlet이 실행되어 요청을 처리하고 응답 정보를 생성한다.</li>
+</ol>
+
+:ET

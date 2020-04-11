@@ -1,0 +1,87 @@
+I"�.<h2 id="codeforces-round-629-div3">Codeforces Round #629 (Div3)</h2>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79038568-34c98180-7c15-11ea-8e56-020f0fb3ae6f.png" alt="submission" width="100%" />
+<img src="https://user-images.githubusercontent.com/17156386/79038566-33985480-7c15-11ea-8452-0f3535262aa0.png" alt="standing" width="100%" /></p>
+
+<h3 id="a-divisibility-problem">A. Divisibility Problem</h3>
+<p><a href="https://codeforces.com/contest/1328/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>a, b 두 숫자가 주어졌을 때 a를 b로 나눈 나머지 값이 0이면 0을 출력하고 0이 아니라면 나머지가 0이 되기 위해 a에 얼만큼 더해야 하는지를 출력</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="n">b</span> <span class="o">?</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">))</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="b-k-th-beautiful-string">B. K-th Beautiful String</h3>
+<p><a href="https://codeforces.com/contest/1328/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이가 n인 문자열에서 a가 n-2개, b가 2개 존자한다고 할때, 오름차순 기준 k번째 문자열은 무엇인지 구하는 문제이다.</p>
+
+<ul>
+  <li>첫번째 b의 위치를 문자의 오른쪽 끝기준 i번째 위치라고 하였을때
+<br />(i-2)(i-1)/2 &lt;= k &lt; (i-1)i/2 의 식이 성립한다
+    <ul>
+      <li>ex) k가 2라고 했을 때 i = 3 이면 1 &lt;= k &lt; 3이 되고 b는 문자열 오른쪽 끝으로부터 3번째 위치에 존재한다.</li>
+    </ul>
+  </li>
+  <li>두번째 b의 위치는 k - (i-1)i/2 의 위치에 있다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+		<span class="k">while</span><span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+		<span class="n">k</span> <span class="o">-=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> 
+		<span class="c1">// b의 첫번째 위치는 n-a에 두번째 위치는 n-k에 존재한다</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="n">a</span> <span class="o">||</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="n">k</span> <span class="o">?</span> <span class="sc">'b'</span> <span class="o">:</span> <span class="sc">'a'</span><span class="p">);</span>
+		<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="c">C.</h3>
+<p><a href="https://codeforces.com/contest/1328/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">idx</span><span class="p">,</span><span class="k">const</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">bool</span> <span class="n">command</span><span class="p">){</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">idx</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'2'</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'1'</span><span class="p">;</span>
+		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'0'</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'0'</span><span class="p">;</span>
+		<span class="k">else</span><span class="p">{</span>
+				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'1'</span><span class="p">;</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">command</span><span class="p">){</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'0'</span><span class="p">;}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span> <span class="n">command</span> <span class="o">?</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:</span> <span class="sc">'0'</span><span class="p">);</span>
+	<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+		<span class="n">string</span> <span class="n">str</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
+		<span class="n">Print</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>
+		<span class="n">Print</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="nb">true</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

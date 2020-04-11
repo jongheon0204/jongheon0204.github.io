@@ -1,0 +1,187 @@
+I"�U<h2 id="educational-codeforces-round-82">Educational Codeforces Round 82</h2>
+
+<div>
+	<img width="100%" alt="Education" src="https://user-images.githubusercontent.com/17156386/74392273-eb91c700-4e49-11ea-9fe1-955581e005e2.png" />
+</div>
+
+<h3 id="a-erasing-zeroes">A. Erasing Zeroes</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/A" target="_blank">[문제 바로가기]</a></p>
+
+<p>0과 1로만 이루어져 있는 문자열에서 1사이에 있는 0을 제거하여 1이 연속되게 하는 문제이다.</p>
+<ul>
+  <li>문자열을 순회하면서 1의 인덱스를 저장하고 인접한 인덱스의 값을 비교하면서 답을 구하면 된다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">string</span> <span class="n">str</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">idx</span><span class="p">;</span>
+		<span class="c1">// 문자열을 탐색하면서 1의 인덱스를 저장한다.</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">len</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span><span class="sc">'1'</span><span class="p">){</span>
+				<span class="n">idx</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="c1">// 인덱스 값들을 비교하면서 답을 구해준다.</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">idx</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="b-national-project">B. National Project</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/B" target="_blank">[문제 바로가기]</a></p>
+
+<p>g일은 좋고 b일은 좋지 않은 기후가 반복되는 도시에서 n개의 고속도로를 보수공사 하는데 몇일이 걸리는지 묻는 문제이다. 
+<br />이때 조건은 최소 절반 이상은 기후가 좋은 날에 공사를 진행해야 한다</p>
+
+<ul>
+  <li>m = n/2 개의 고속도로를 g일로 나눈 나머지 값을 이용하여 검사진행</li>
+  <li>나머지가 0일 경우 (g+b) * m/g - b 값을 n과 비교하여 n보다 작을 경우 n을 아닐시 계산한 값을 출력해준다.</li>
+  <li>나머지가 0이 아닐경우 (g+b) * m/g + m%g 값을 n과 비교하여 n보다 작을 경우 n을 아닐시 계산한 값을 출력해준다.</li>
+  <li>두경우 모두 계산값이 n보다 작은 경우는 절반을 기후가 좋은날에 보수공사 할 수 있기 때문에 n을 출력해주는 것이다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">g</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="n">g</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="n">ll</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">);</span>
+			<span class="n">ll</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">mid</span><span class="o">/</span><span class="n">g</span><span class="p">;</span>
+			<span class="c1">// 절반을 g로 나눈 나머지를 이용</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">mid</span> <span class="o">%</span> <span class="n">g</span><span class="p">){</span>
+				<span class="c1">// n의 값보다 클 경우 최소 ans일 필요</span>
+				<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="o">*</span><span class="p">(</span><span class="n">g</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">mid</span><span class="o">%</span><span class="n">g</span><span class="p">);</span>
+				<span class="k">if</span><span class="p">(</span> <span class="n">ans</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">){</span>
+					<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="c1">// n의 값보다 작을 경우 n일만에 완료가능</span>
+					<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="o">*</span><span class="n">g</span> <span class="o">+</span> <span class="p">(</span><span class="n">tmp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">b</span><span class="p">);</span>
+				<span class="c1">// n의 값보다 클 경우 최소 ans일 필요</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">ans</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">){</span>
+					<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ans</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// n의 값보다 작을 경우 n일만에 완료가능</span>
+					<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="c-perfect-keyboard">C. Perfect Keyboard</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/C" target="_blank">[문제 바로가기]</a></p>
+
+<p>한 줄로 이루어진 키보드를 제작하는데 비밀번호를 입력하기 편하도록 비밀번호를 구성하는 알파벳이 인접해 있어야한다.</p>
+
+<ul>
+  <li>비밀번호를 탐색하면서 나오는 알파벳을 키보드에 하나씩 추가해주는 시물레이션</li>
+  <li>덱과 현재 손가락의 위치를 나타내는 변수를 이용한다.</li>
+  <li>현재 검사하는 알파벳이 이전에 나왔다면 현재 위치의 좌,우에 존재하는지 검사, 이전에 나오지 않았다면 현재 위치의 좌,우에 알파벳을 추가할 수 있는지 검사한다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;deque&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="c1">// 알파벳의 사용여부를 저장하는 배열</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isUsed</span><span class="p">(</span><span class="mi">26</span><span class="p">);</span>
+		<span class="n">string</span> <span class="n">str</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
+		<span class="c1">// 덱을 이용하여 한줄 키보드를 만든다</span>
+		<span class="n">deque</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">;</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="c1">// 비밀번호 첫번째 알파벳을 저장</span>
+		<span class="n">isUsed</span><span class="p">[</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="sc">'a'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+		<span class="kt">bool</span> <span class="n">isPossible</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="c1">// 비밀번호를 탐색하면서 키보드 만들기</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">len</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">'a'</span><span class="p">;</span>
+			<span class="c1">// 해당 알파벳을 이미 사용했다면</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">isUsed</span><span class="p">[</span><span class="n">idx</span><span class="p">]){</span>
+				<span class="kt">int</span> <span class="n">tcur</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+				<span class="c1">// 왼쪽에 위치하는지 </span>
+				<span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">&amp;&amp;</span> <span class="n">que</span><span class="p">[</span><span class="n">cur</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+					<span class="n">cur</span><span class="o">--</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="c1">// 오른쪽에 위치하는지 검사</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">que</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">que</span><span class="p">[</span><span class="n">cur</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+					<span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="c1">// 둘다 아니라면 키보드 만들기 불가능</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">tcur</span> <span class="o">==</span> <span class="n">cur</span><span class="p">){</span>
+					<span class="n">isPossible</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+				<span class="c1">// 오른쪽에 추가가 가능한지</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="n">size</span><span class="p">){</span>
+					<span class="n">que</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+					<span class="n">cur</span><span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+				<span class="c1">// 왼쪽에 추가가 가능한지</span>
+					<span class="n">que</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+				<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="c1">// 추가가 불가능 할시 키보드 만들기 불가능</span>
+					<span class="n">isPossible</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="n">isUsed</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="c1">// 키보드 만들기가 가능하다면 덱에 있는 순서대로 만든 후 사용하지 않은 알파벳은 차례대로 출력</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">isPossible</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"YES</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">que</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">que</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+			<span class="p">}</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+				<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isUsed</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="kt">char</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="sc">'a'</span><span class="p">);</span>	
+			<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"NO</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="d-fill-the-bag">D. Fill The Bag</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/D" target="_blank">[문제 바로가기]</a></p>
+
+<h3 id="e-erase-subsequences">E. Erase Subsequences</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/E" target="_blank">[문제 바로가기]</a></p>
+
+<h3 id="f-number-of-components">F. Number of Components</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/F" target="_blank">[문제 바로가기]</a></p>
+
+<h3 id="g-sum-of-prefix-sums">G. Sum of Prefix Sums</h3>
+<p><a href="https://codeforces.com/contest/1303/problem/G" target="_blank">[문제 바로가기]</a></p>
+:ET

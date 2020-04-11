@@ -1,0 +1,13 @@
+I"j<h2 id="1-jspjava-server-pages">1. JSP(Java Server Pages)</h2>
+
+<h3 id="01-특징">01. 특징</h3>
+
+<ul>
+  <li>JSP는 Servlet으로 바뀌어 동작한다.</li>
+  <li>Servlet으로 바뀐후, Life Cycle 동작</li>
+</ul>
+
+<pre><code class="language-JSP">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;
+</code></pre>
+
+:ET

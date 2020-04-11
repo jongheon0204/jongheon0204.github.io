@@ -1,0 +1,10 @@
+I"�<h2 id="codeforces-round-629-div3">Codeforces Round #629 (Div3)</h2>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79038568-34c98180-7c15-11ea-8e56-020f0fb3ae6f.png" alt="submission" width="100%" />
+<img src="https://user-images.githubusercontent.com/17156386/79038566-33985480-7c15-11ea-8452-0f3535262aa0.png" alt="standing" width="100%" /></p>
+
+<h3 id="a-divisibility-problem">A. Divisibility Problem</h3>
+<p><a href="https://codeforces.com/contest/1328/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>a, b 두 숫자가 주어졌을 때 a를 b로 나눈 나머지 값이 0이면 0을 출력하고 0이 아니라면 나머지가 0이 되기 위해 a에 얼만큼 더해야 하는지를 출력</p>
+:ET

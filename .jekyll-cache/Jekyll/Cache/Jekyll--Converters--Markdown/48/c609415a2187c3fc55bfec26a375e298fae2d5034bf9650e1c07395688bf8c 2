@@ -1,0 +1,75 @@
+I"�<h3 id="슬라이딩-윈도우"><strong>슬라이딩 윈도우</strong></h3>
+<blockquote>
+  <p>순서대로 움직이는 고정된 크기의 부분 배열</p>
+</blockquote>
+
+<h3 id="특징">특징</h3>
+
+<ul>
+  <li>네트워크 호스트간의 패킷의 흐름을 제어하기 위한 알고리즘이다.</li>
+  <li>고정된 크기의 부분 배열에서 최솟값을 찾는데 사용할 수도 있다.</li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<div>
+	<img width="100%" alt="sliding_window" src="https://user-images.githubusercontent.com/17156386/74204746-c5d4b880-4cb7-11ea-8ac5-3b56c9968978.png" />
+</div>
+
+<p>크기가 4인 부분배열이 왼쪽부터 오른쪽으로 차례대로 이동하는 것을 알 수 있다. 
+<br />네트워크 호스트간의 패킷 흐름을 제어하기 위해 사용하나 구간 최소값을 연속적으로 찾아내는 문제에 활용될 수도 있다.</p>
+
+<h3 id="풀이방법">풀이방법</h3>
+
+<ol>
+  <li>원소의 인덱스와 값을 저장하는 덱을 만든다.
+```c++
+#include <deque>
+#define pii pair&lt;int,int&gt;</deque></li>
+</ol>
+
+<p>deque<pii> window;</pii></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+2. 값을 입력받아 이 값보다 큰 원소들을 덱에서 제거해 준다.
+```c++
+int cur; cin&gt;&gt;cur;
+while(!window.empty() &amp;&amp; window.back().second &gt;= cur){
+	window.pop_back();
+}
+</code></pre></div></div>
+
+<ol>
+  <li>부분배열 범위를 벗어난 앞 원소를 제거해준다.
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="n">window</span><span class="p">.</span><span class="n">front</span><span class="p">().</span><span class="n">first</span> <span class="o">+</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">)</span> <span class="n">window</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="문제">문제</h3>
+
+<p><a href="https://www.acmicpc.net/problem/11003" target="_blank">백준 11003:최솟값 찾기</a></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;deque&gt;
+#define pii pair&lt;int,int&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">l</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">l</span><span class="p">;</span>
+	<span class="c1">// 원소의 인덱스와 값을 저장할 덱을 사용</span>
+	<span class="n">deque</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">window</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cur</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">cur</span><span class="p">;</span>
+		<span class="c1">// 값을 입력받고 입력받은 값보다 큰 원소들을 제거</span>
+		<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">window</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">second</span> <span class="o">&gt;=</span> <span class="n">cur</span><span class="p">){</span>
+			<span class="n">window</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+		<span class="p">}</span>	
+		<span class="c1">// 현재 입력받은 값을 넣어준다.</span>
+		<span class="n">window</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cur</span><span class="p">));</span>
+		<span class="c1">// 부분배열의 범위를 벗어난 원소를 제거해 준다. </span>
+		<span class="k">if</span><span class="p">(</span><span class="n">window</span><span class="p">.</span><span class="n">front</span><span class="p">().</span><span class="n">first</span> <span class="o">+</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">)</span> <span class="n">window</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">window</span><span class="p">.</span><span class="n">front</span><span class="p">().</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
