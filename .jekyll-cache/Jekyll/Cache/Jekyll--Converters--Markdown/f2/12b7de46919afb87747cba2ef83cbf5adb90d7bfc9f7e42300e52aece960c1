@@ -1,0 +1,26 @@
+I"_<h2 id="1-redirect">1. Redirect</h2>
+
+<p>Redirect는 Client의 요청을 받은 후, Client에 특정 URL로 이동하라고 요청하는 것이다.
+<br />이때 요청방법은 헤더(Header)에 상태코드 302와 이동할 URL을 담아서 Client에게 전달한다.</p>
+
+<h3 id="01-실행순서">01. 실행순서</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Client가 특정 웹 페이지를 요청한다.
+2. 웹 서버는 상태코드 302와 이동할 URL정보를 헤더(header)에 담아 Client에게 전송한다
+3. Client는 상태코드 302를 확인하고 헤더에 담긴 URL을 다시 웹 서버에 요청한다.
+4. 웹 서버는 요청받은 웹 페이지를 Client에게 보내준다.
+</code></pre></div></div>
+
+<ul>
+  <li>Redirect 하기 위해서는 HttpServletResponse의 sendRedirect() 메소드를 사용한다</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// WebContent/redirect02.jsp</span>
+<span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">"java"</span> <span class="n">contentType</span><span class="o">=</span><span class="s">"text/html;charset=UTF-8"</span> <span class="n">pageEncoding</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="o">%&gt;</span>
+<span class="c1">// sendRedirect() 메소드를 통해 redirect02.jsp 로 이동하도록 한다.</span>
+<span class="o">&lt;%</span> <span class="n">response</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="s">"redirect02.jsp"</span><span class="o">);</span> <span class="o">%&gt;</span>
+</code></pre></div></div>
+
+<h2 id="2-forward">2. Forward</h2>
+
+<h3 id="01-실행순서-1">01. 실행순서</h3>
+:ET
