@@ -1,0 +1,130 @@
+I"0><h3 id="a-ichihime-and-triangle">A. Ichihime and Triangle</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 a, b, c, d가 주어졌을 때 다음을 만족하는 x, y, z를 구하는 문제</p>
+<ul>
+  <li>a&lt;= x &lt;=b</li>
+  <li>b&lt;= y &lt;=c</li>
+  <li>c&lt;= z &lt;=d</li>
+  <li>x, y, z는 삼각형 변의 길이이다.</li>
+  <li>y와 z를 c로 한다면 이등변 삼각형이 되기 때문에 x의 값이 1보다 크기만 하면 된다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="o">&gt;&gt;</span><span class="n">d</span><span class="p">;</span>
+		<span class="c1">// x = b, y = z = c로 한다면 이등변 삼각형이 된다.</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="b-kana-and-dragon-quest-game">B. Kana and Dragon Quest game</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>h 값에 대해 (h/2) + 10 계산 최대 n번, h - 10 계산 최대 m번이 가능하다고 할때, h값이 0이하가 될수 있는지 검사.</p>
+
+<ul>
+  <li>n번동안 (h/2) + 10 계산을 하면서 값이 오히려 커지면 그만둔다.</li>
+  <li>h - 10 * m 계산을 한 후 0보다 작은지 검사한다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="p">;</span>
+		<span class="c1">// n번동안 h/2 + 10 계산을 하는데 이때 계산을 한 후 값이 더 커지면 그만둔다.</span>
+		<span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">next</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+			<span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">x</span> <span class="o">-=</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="mi">10</span><span class="p">);</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="s">"YES</span><span class="se">\n</span><span class="s">"</span> <span class="o">:</span> <span class="s">"NO</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="c-linova-and-kingdom">C. Linova and Kingdom</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n개의 노드로 이루어진 트리가 있을때, k개의 노드를 선택하고 루트로 가는 길중 선택하지 않은 노드의 개수가 최대를 구하는 문제이다.</p>
+
+<ul>
+  <li>간선이 주어졌을때, DFS로 각 노드의 레벨과 자식의 개수를 구한다.</li>
+  <li>i번째 노드를 선택한다면 더할수 있는 값은 (level[i] - child[i])가 된다.</li>
+  <li>위의 값들을 정렬한 후 값들이 최대가 되는 노드 k개를 선택하면 된다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define vi vector&lt;int&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+ 
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isVisit</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">child</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">node</span><span class="p">;</span>
+ 
+<span class="c1">// 정렬 기준은 노드의 레벨 - 자식의 개수값 이다.</span>
+<span class="kt">bool</span> <span class="nf">cmp</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">b</span><span class="p">]);</span>
+<span class="p">}</span>
+ 
+<span class="n">ll</span> <span class="nf">Find</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur</span><span class="p">,</span><span class="n">ll</span> <span class="n">lev</span><span class="p">){</span>
+	<span class="n">isVisit</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">level</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">lev</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="c1">// 연결된 간선을 검사하면서 자식을 탐색한다.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">edge</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">isVisit</span><span class="p">[</span><span class="n">next</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+		<span class="n">ret</span> <span class="o">+=</span> <span class="n">Find</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="n">lev</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>	
+	<span class="c1">// 자식의 개수를 반환해 주는데 자신까지 포함한 값을 반환한다</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">child</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+	
+	<span class="n">edge</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">isVisit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">node</span> <span class="o">=</span> <span class="n">child</span> <span class="o">=</span> <span class="n">level</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">node</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+	<span class="p">}</span>
+ 
+	<span class="n">Find</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+	
+	<span class="n">sort</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">node</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp</span><span class="p">);</span>
+	<span class="c1">// 정렬후 k개의 값을 더해주면 된다.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">cur</span><span class="p">]);</span>	
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="d-xenia-and-colorful-gems">D. Xenia and Colorful Gems</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<h3 id="e-kaavi-and-magic-spell">E. Kaavi and Magic Spell</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/E" target="\_blank">[문제 바로가기]</a></p>
+
+<h3 id="f-yui-and-mahjong-set">F. Yui and Mahjong Set</h3>
+<p><a href="https://codeforces.com/contest/1337/problem/F" target="\_blank">[문제 바로가기]</a></p>
+:ET
