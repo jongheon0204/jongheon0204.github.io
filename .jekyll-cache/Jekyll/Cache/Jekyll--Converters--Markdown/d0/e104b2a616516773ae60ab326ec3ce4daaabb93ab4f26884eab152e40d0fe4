@@ -1,0 +1,59 @@
+I"�<h2 id="1-scope">1. Scope</h2>
+
+<p>Scope은 변수를 생성해서 사용할 수 있는 범위를 나타내는 것으로서 setAttribute(), getAttribute() 메소드를 이용하여 데이터를 저장, 불러오기를 한다</p>
+
+<h3 id="01-page-scope">01. Page Scope</h3>
+
+<p>Page Scope은 가장 적은 범위의 Scope으로서 선언된 곳에서만 사용할 수 있다.
+<br />지역변수 처럼 사용하기 때문에 Forward시 값을 사용할 수 없으며 주로 저장한 값을 EL표기법 등에서 사용한다.</p>
+
+<ul>
+  <li>JSP : pageContext 내장 객체를 사용</li>
+  <li>Servlet : pageContext 추상 클래스를 사용</li>
+</ul>
+
+<h3 id="02-request-scope">02. Request Scope</h3>
+
+<p>Http의 요청을 WAS가 받아 응답할때까지 변수값을 유지하고자 할 경우에 사용하며 Forward시에 값을 유지한다</p>
+
+<ul>
+  <li>JSP : Request 내장 객체를 사용</li>
+  <li>Servlet : HttpServletRequest 객체를 사용</li>
+</ul>
+
+<h3 id="03-session-scope">03. Session Scope</h3>
+
+<p>Client 각각 다른 값을 가져야 하는 변수를 관리하고자 할 때 사용한다(로그인 정보 등)
+<br />웹 브라우저의 Tab은 Session 정보가 공유된다.</p>
+
+<ul>
+  <li>JSP : Session 내장 객체를 사용</li>
+  <li>Servlet : HttpServletRequest의 getSession() 메소드를 통해 Session 객체를 반환받는다</li>
+</ul>
+
+<h3 id="04-application-scope">04. Application Scope</h3>
+
+<p>가장 범위가 넓은 Scope으로서 웹 어플리케이션이 시작되고 종료될때까지 사용할 수 있다.
+<br />모든 Client가 공통으로 사용할 값을 유지할때 사용</p>
+
+<ul>
+  <li>JSP : application 내장 객체</li>
+  <li>Servlet : getServletContext() 메소드를 통해 ServletContext 객체를 반환받는다</li>
+</ul>
+
+<h3 id="05-실습">05. 실습</h3>
+
+<p>Servlet과 JSP에서 Application Scope을 이용해본다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span><span class="o">{</span>
+	<span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html; charset=utf-8"</span><span class="o">);</span>
+	<span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+
+	<span class="nc">ServletContext</span> <span class="n">application</span> <span class="o">=</span> <span class="n">getServletContext</span><span class="o">();</span>
+	<span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+	<span class="n">application</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"value"</span><span class="o">,</span><span class="n">value</span><span class="o">);</span>
+
+	<span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;h1&gt; value : "</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">"&lt;/h1&gt;"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET
