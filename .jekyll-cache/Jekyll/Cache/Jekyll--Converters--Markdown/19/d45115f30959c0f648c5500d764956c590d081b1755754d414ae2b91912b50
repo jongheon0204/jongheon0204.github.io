@@ -1,0 +1,52 @@
+I"u<h2 id="1-elexpression-language">1. EL(Expression Language)</h2>
+<blockquote>
+  <p>값을 표현하는데 사용되는 스크립트 언어</p>
+</blockquote>
+
+<h3 id="01-표현-방법">01. 표현 방법</h3>
+
+<ul>
+  <li>${expr}</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="o">{</span><span class="n">pageContext</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">requestURI</span><span class="o">}</span> <span class="c1">// pageContext.getRequest() or pageContext.getRequestURI()</span>
+<span class="err">$</span><span class="o">{</span><span class="n">requestScope</span><span class="o">.</span><span class="na">name</span><span class="o">}</span> <span class="c1">// request.getAttribute("name")</span>
+</code></pre></div></div>
+
+<h3 id="02-객체-접근-규칙">02. 객체 접근 규칙</h3>
+
+<ul>
+  <li>${&lt;표현 1&gt;.&lt;표현 2&gt;}
+    <ul>
+      <li>표현1 or 표현2가 NULL이면 NULL을 반환한다</li>
+      <li>표현1이 Map일 경우 표현2는 Key</li>
+      <li>표현1이 List일 경우 표현2는 Index값(정수만 가능, 정수가 아닐시 에러)</li>
+    </ul>
+  </li>
+  <li>비교 연산자
+    <ul>
+      <li>${str == ‘값’} // str.compareTo(“값”)==0</li>
+    </ul>
+  </li>
+  <li>empty 연산자
+    <ul>
+      <li>empty <값> // <값>이 비어있는 경우 true, 그 외의 경우 false</값></값></li>
+    </ul>
+  </li>
+  <li>EL 비활성화
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">isElIgnored</span> <span class="o">=</span> <span class="s">"true"</span> <span class="o">%&gt;</span> 
+</code></pre></div>    </div>
+    <ul>
+      <li>Servlet 2.4 버전 이후부터는 EL이 기본적으로 사용되지만 2.4이전 버전은 EL이 무시된다</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-실습">03. 실습</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;%</span>
+	<span class="n">pageContext</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"p"</span><span class="o">,</span><span class="s">"page scope value"</span><span class="o">);</span>
+	<span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"r"</span><span class="o">,</span><span class="s">"request scope value"</span><span class="o">);</span>
+	<span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"s"</span><span class="o">,</span><span class="s">"session scope value"</span><span class="o">);</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,81 @@
+I"K<h2 id="1-elexpression-language">1. EL(Expression Language)</h2>
+<blockquote>
+  <p>값을 표현하는데 사용되는 스크립트 언어</p>
+</blockquote>
+
+<h3 id="01-표현-방법">01. 표현 방법</h3>
+
+<ul>
+  <li>${expr}</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="o">{</span><span class="n">pageContext</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">requestURI</span><span class="o">}</span> <span class="c1">// pageContext.getRequest() or pageContext.getRequestURI()</span>
+<span class="err">$</span><span class="o">{</span><span class="n">requestScope</span><span class="o">.</span><span class="na">name</span><span class="o">}</span> <span class="c1">// request.getAttribute("name")</span>
+</code></pre></div></div>
+
+<h3 id="02-객체-접근-규칙">02. 객체 접근 규칙</h3>
+
+<ul>
+  <li>${&lt;표현 1&gt;.&lt;표현 2&gt;}
+    <ul>
+      <li>표현1 or 표현2가 NULL이면 NULL을 반환한다</li>
+      <li>표현1이 Map일 경우 표현2는 Key</li>
+      <li>표현1이 List일 경우 표현2는 Index값(정수만 가능, 정수가 아닐시 에러)</li>
+    </ul>
+  </li>
+  <li>비교 연산자
+    <ul>
+      <li>${str == ‘값’} // str.compareTo(“값”)==0</li>
+    </ul>
+  </li>
+  <li>empty 연산자
+    <ul>
+      <li>empty <값> // <값>이 비어있는 경우 true, 그 외의 경우 false</값></값></li>
+    </ul>
+  </li>
+  <li>EL 비활성화
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">isElIgnored</span> <span class="o">=</span> <span class="s">"true"</span> <span class="o">%&gt;</span> 
+</code></pre></div>    </div>
+    <ul>
+      <li>Servlet 2.4 버전 이후부터는 EL이 기본적으로 사용되지만 2.4이전 버전은 EL이 무시된다</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="03-실습">03. 실습</h3>
+
+<pre><code class="language-jst">&lt;%
+	pageContext.setAttribute("p","page scope value");
+	request.setAttribute("r","request scope value");
+%&gt;
+&lt;%= pageContext.getAttribute("p") %&gt; &lt;br&gt;
+${pageScope.p}&lt;br&gt;
+&lt;%= request.getAttribute("r") %&gt;&lt;br&gt;
+${requestScope.r}
+
+&lt;%
+	request.setAttribute("k",10);
+	request.setAttribute("m",true);
+%&gt;
+
+k : ${k}, m : ${m}&lt;br&gt;
+k / 5 : ${k div 5}&lt;br&gt;
+!m : ${!m}
+</code></pre>
+
+<h2 id="2-jstljsp-standard-tag-library">2. JSTL(JSP Standard Tag Library)</h2>
+<blockquote>
+  <p>JSP에서 자바 코드를 html tag 형태로 작성할 수 있다.</p>
+</blockquote>
+
+<p><a href="http://tomcat.apache.org/download-taglibs.cgi" target="\_blank">jar파일 다운로드</a> 사이트에서 Impl, Spec, EL 3파일을 다운로드 받은 후 WEB-INF/lib 폴더에 복사후 사용이 가능하다</p>
+
+<h3 id="01-코어-태그">01. 코어 태그</h3>
+
+<ul>
+  <li>변수 생성</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;c:set</span> <span class="na">var=</span><span class="s">"varName"</span> <span class="na">scope=</span><span class="s">"session"</span> <span class="na">value=</span><span class="s">"someValue"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+:ET

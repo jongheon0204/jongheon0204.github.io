@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Beginner Contest 161 | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Beginner Contest 161" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A. ABC Swap [문제 바로가기]" />
+<meta property="og:description" content="A. ABC Swap [문제 바로가기]" />
+<link rel="canonical" href="http://localhost:4000/algorithm/judge/2020/04/18/ABC161.html" />
+<meta property="og:url" content="http://localhost:4000/algorithm/judge/2020/04/18/ABC161.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-18T23:05:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/algorithm/judge/2020/04/18/ABC161.html","description":"A. ABC Swap [문제 바로가기]","headline":"Beginner Contest 161","dateModified":"2020-04-18T23:05:00+09:00","datePublished":"2020-04-18T23:05:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/algorithm/judge/2020/04/18/ABC161.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/home.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body">
+		<header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Study</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/study/Web_Programming>Web Programming</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/judge>Online Judge Contest</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+
+		<main class="page-content" aria-label="Content">
+			<div class = "wrapper">
+	<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	
+	  <header class="post-header">
+	    <h1 class="post-title p-name" itemprop="name headline">Beginner Contest 161</h1>
+	    <p class="post-meta">
+	      <time class="dt-published" datetime="2020-04-18T23:05:00+09:00" itemprop="datePublished">Apr 18, 2020
+	      </time></p>
+	  </header>
+	
+	  <div class="post-content e-content" itemprop="articleBody">
+	    <h2 id="a-abc-swap">A. ABC Swap</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_a" target="\_blank">[문제 바로가기]</a></p>
+
+<p>3개의 숫자(A,B,C)가 주어졌을때 A와 B를 교환후 A와 C를 교환한 값 출력</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">;</span>
+	<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span> <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-popular-vote">B. Popular Vote</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_b" target="\_blank">[문제 바로가기]</a></p>
+
+<p>N개의 물건중 투표수가 가장 많은 M개의 물건을 다음과 같은 조건에 의해 고르려고 한다.
+<br />조건 : 해당 물건의 투표수는 총 투표수 / (4 * M) 보다 많아야 한다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="c1">// 물건들의 투표수를 모두 더한다</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		 <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		 <span class="n">sum</span> <span class="o">+=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+	<span class="c1">// 투표수 기준으로 내림차순 정렬</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+	<span class="kt">bool</span> <span class="n">isSelect</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="c1">// 나머지 값에 의한 오차를 대비</span>
+	<span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">m</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">sum</span><span class="o">%</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sum</span><span class="p">){</span>
+			<span class="n">isSelect</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>	
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">isSelect</span> <span class="o">?</span> <span class="s">"Yes"</span> <span class="o">:</span> <span class="s">"No"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-replacing-integer">C. Replacing Integer</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_c" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 N, K가 주어질 때 N을 K로 계속해서 뺀 값들의 절대값중 가장 작은 수를 구하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+	<span class="n">n</span> <span class="o">%=</span> <span class="n">k</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-lunlun-number">D. Lunlun Number</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_d" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자의 각 자리수 차가 1이하를 만족하는 숫자들중 N번째로 작은 수를 출력하는 문제</p>
+
+<ul>
+  <li>Queue를 이용하여 현재 숫자 * 10 + 일의 자리수로 검사한다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="n">queue</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">;</span>
+	<span class="c1">// 처음에는 9개의 숫자를 큐에 넣어준다.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">--</span><span class="n">n</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">(),</span><span class="n">last</span> <span class="o">=</span> <span class="n">cur</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>	
+		<span class="c1">// 큐에서 가져온 숫자의 일의자리수를 기준으로 많으면 3개 적으면 2개의 숫자를 큐에 넣는다</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">last</span><span class="p">)</span><span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">last</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">last</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">last</span><span class="o">!=</span><span class="mi">9</span><span class="p">)</span><span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">cur</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">last</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="e-yutori">E. Yutori</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_e" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="f-division-or-subtraction">F. Division or Subtraction</h2>
+<p><a href="https://atcoder.jp/contests/abc161/tasks/abc161_f" target="\_blank">[문제 바로가기]</a></p>
+
+	  </div><a class="u-url" href="/algorithm/judge/2020/04/18/ABC161.html" hidden></a>
+	</article>
+</div>
+
+		</main><footer class="site-footer">
+		© 2020 Copyright: <a href = "https://github.com/jongheon0204/jekyll_theme_customizing" target = "_blank">Jongheon0204</a>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163795957-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163795957-1');
+</script>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>
