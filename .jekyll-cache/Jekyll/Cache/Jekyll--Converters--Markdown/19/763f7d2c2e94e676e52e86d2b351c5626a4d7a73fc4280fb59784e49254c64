@@ -1,0 +1,202 @@
+I"�u<h3 id="a-candies-and-two-sisters">A. Candies and Two Sisters</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 a, b, c, d가 주어졌을 때 다음을 만족하는 x, y, z를 구하는 문제</p>
+<ul>
+  <li>a&lt;= x &lt;=b</li>
+  <li>b&lt;= y &lt;=c</li>
+  <li>c&lt;= z &lt;=d</li>
+  <li>x, y, z는 삼각형 변의 길이이다.</li>
+  <li>y와 z를 c로 한다면 이등변 삼각형이 되기 때문에 x의 값이 1보다 크기만 하면 된다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="o">&gt;&gt;</span><span class="n">d</span><span class="p">;</span>
+		<span class="c1">// x = b, y = z = c로 한다면 이등변 삼각형이 된다.</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="b-kana-and-dragon-quest-game">B. Kana and Dragon Quest game</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>h 값에 대해 (h/2) + 10 계산 최대 n번, h - 10 계산 최대 m번이 가능하다고 할때, h값이 0이하가 될수 있는지 검사.</p>
+
+<ul>
+  <li>n번동안 (h/2) + 10 계산을 하면서 값이 오히려 커지면 그만둔다.</li>
+  <li>h - 10 * m 계산을 한 후 0보다 작은지 검사한다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="p">;</span>
+		<span class="c1">// n번동안 h/2 + 10 계산을 하는데 이때 계산을 한 후 값이 더 커지면 그만둔다.</span>
+		<span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">next</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+			<span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">x</span> <span class="o">-=</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="mi">10</span><span class="p">);</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="mi">0</span> <span class="o">?</span> <span class="s">"YES</span><span class="se">\n</span><span class="s">"</span> <span class="o">:</span> <span class="s">"NO</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="c-linova-and-kingdom">C. Linova and Kingdom</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n개의 노드로 이루어진 트리가 있을때, k개의 노드를 선택하고 루트로 가는 길중 선택하지 않은 노드의 개수가 최대를 구하는 문제이다.</p>
+
+<ul>
+  <li>간선이 주어졌을때, DFS로 각 노드의 레벨과 자식의 개수를 구한다.</li>
+  <li>i번째 노드를 선택한다면 더할수 있는 값은 (level[i] - child[i])가 된다.</li>
+  <li>위의 값들을 정렬한 후 값들이 최대가 되는 노드 k개를 선택하면 된다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define vi vector&lt;int&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+ 
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isVisit</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">child</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">node</span><span class="p">;</span>
+ 
+<span class="c1">// 정렬 기준은 노드의 레벨 - 자식의 개수값 이다.</span>
+<span class="kt">bool</span> <span class="nf">cmp</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">b</span><span class="p">]);</span>
+<span class="p">}</span>
+ 
+<span class="n">ll</span> <span class="nf">Find</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur</span><span class="p">,</span><span class="n">ll</span> <span class="n">lev</span><span class="p">){</span>
+	<span class="n">isVisit</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">level</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">lev</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="c1">// 연결된 간선을 검사하면서 자식을 탐색한다.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">edge</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">isVisit</span><span class="p">[</span><span class="n">next</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+		<span class="n">ret</span> <span class="o">+=</span> <span class="n">Find</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="n">lev</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>	
+	<span class="c1">// 자식의 개수를 반환해 주는데 자신까지 포함한 값을 반환한다</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">child</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+	
+	<span class="n">edge</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">isVisit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">node</span> <span class="o">=</span> <span class="n">child</span> <span class="o">=</span> <span class="n">level</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">node</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+	<span class="p">}</span>
+ 
+	<span class="n">Find</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+	
+	<span class="n">sort</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">node</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp</span><span class="p">);</span>
+	<span class="c1">// 정렬후 k개의 값을 더해주면 된다.</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">-</span> <span class="n">child</span><span class="p">[</span><span class="n">cur</span><span class="p">]);</span>	
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="d-xenia-and-colorful-gems">D. Xenia and Colorful Gems</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<p>무게가 서로 다른 3가지 공의 집합이 존재한다(빨강, 파랑, 초록).
+<br />각 집합에서 공을 한개씩 선택한 후, 무게값 차이의 제곱의 합이 최소가 되도록 하는 최소값을 구하는 문제이다.</p>
+
+<ul>
+  <li>단순한 방법은 각 집합에서 공 한개씩 뽑는 방법을 다 해보는 것이다.</li>
+  <li>이때 무게값 차이의 제곱이 최소가 되도록 하기 위해서는 무게가 최소한 비슷해야 하고 이는 정렬 후, 이분 탐색을 이용하여 빠르게 찾아낼 수 있다.</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">// 공의 무게들을 입력받는다</span>
+<span class="kt">void</span> <span class="nf">Input</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">len</span><span class="p">){</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// 문제에서 구해야 하는 값</span>
+<span class="n">ll</span> <span class="nf">Multiply</span><span class="p">(</span><span class="k">const</span> <span class="n">ll</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="k">const</span> <span class="n">ll</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span><span class="k">const</span> <span class="n">ll</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">){</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">ll</span> <span class="nf">getMinNum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;&amp;</span> <span class="n">c</span><span class="p">){</span>
+	<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="c1">// 선택한 공과 같거나 그 이상인 공을 다른 집합에서 찾는다</span>
+		<span class="kt">int</span> <span class="n">sb</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+		<span class="kt">int</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+		<span class="c1">// 만약에 존재하지 않는다면 해당 집합의 맨 마지막 공을 선택한다</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sb</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">sb</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sc</span> <span class="o">==</span> <span class="n">c</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">sc</span><span class="o">--</span><span class="p">;</span>
+		<span class="c1">// 문제에서 요구하는 식에 대입</span>
+		<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">Multiply</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">sb</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">sc</span><span class="p">]);</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="n">cur</span> <span class="o">:</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">cur</span><span class="p">));</span>
+		<span class="c1">// 선택한 공보다 무게가 작은 것도 같이 검사한다 </span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sb</span><span class="p">){</span>
+			<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">Multiply</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">sb</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">sc</span><span class="p">]);</span>
+			<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="n">cur</span> <span class="o">:</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">cur</span><span class="p">));</span>
+		<span class="p">}</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sc</span><span class="p">){</span>
+			<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">Multiply</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">sb</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+			<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="n">cur</span> <span class="o">:</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">cur</span><span class="p">));</span>
+		<span class="p">}</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sb</span> <span class="o">&amp;&amp;</span> <span class="n">sc</span><span class="p">){</span>
+			<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">Multiply</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">sb</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">sc</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+			<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="n">cur</span> <span class="o">:</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">cur</span><span class="p">));</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">nr</span><span class="p">,</span><span class="n">ng</span><span class="p">,</span><span class="n">nb</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">nr</span><span class="o">&gt;&gt;</span><span class="n">ng</span><span class="o">&gt;&gt;</span><span class="n">nb</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">(</span><span class="n">nr</span><span class="p">),</span><span class="n">g</span><span class="p">(</span><span class="n">ng</span><span class="p">),</span><span class="n">b</span><span class="p">(</span><span class="n">nb</span><span class="p">);</span>
+
+		<span class="n">Input</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">);</span>
+		<span class="n">Input</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">ng</span><span class="p">);</span>
+		<span class="n">Input</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">nb</span><span class="p">);</span>
+		
+		<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">getMinNum</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">getMinNum</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">ans</span><span class="p">);</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">getMinNum</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="e-kaavi-and-magic-spell">E. Kaavi and Magic Spell</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/E" target="\_blank">[문제 바로가기]</a></p>
+
+<h3 id="f-yui-and-mahjong-set">F. Yui and Mahjong Set</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/F" target="\_blank">[문제 바로가기]</a></p>
+:ET

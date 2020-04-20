@@ -1,0 +1,92 @@
+I"")<h3 id="a-candies-and-two-sisters">A. Candies and Two Sisters</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 n을 a, b로 나누었을때 (a &gt; b)를 만족하는 숫자쌍을 구하여라</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>	
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="b-construct-the-string">B. Construct the String</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이가 N인 문자열에서 이어진 문자 A개가 B개의 서로 다른 알파벳으로 이루어져 있게 출력</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="kt">char</span><span class="p">)((</span><span class="n">idx</span><span class="o">++</span><span class="p">)</span><span class="o">+</span><span class="sc">'a'</span><span class="p">);</span>	
+			<span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="c-two-teams-composing">C. Two Teams Composing</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>N개의 숫자를 다음과 같은 조건으로 두 그룹으로 분류한다고 할때 그룹의 최대 크기를 구하는 문제</p>
+
+<ul>
+  <li>첫번째 그룹의 숫자는 각각 달라야 한다</li>
+  <li>두번재 그룹의 숫자는 모두 같아야 한다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">;</span> <span class="n">num</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">sum</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sum</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">sum</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="k">else</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">min</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span><span class="n">sum</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="d-anti-sudoku">D. Anti-Sudoku</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<p>스도쿠가 주어졌을때 9개의 숫자를 변경해 다음과 같은 3가지 조건을 만족해야 한다</p>
+
+<ul>
+  <li>모든 행은 적어도 두개의 같은 원소가 존재한다</li>
+  <li>모든 열은 적어도 두개의 같은 원소가 존재한다</li>
+  <li>각 3 X 3 블록은 적어도 두개의 같은 원소가 존재한다</li>
+</ul>
+
+<p>이 문제는 서로 다른 열, 행, 블록을 9번 선택해 근처의 값으로 변경해 주면 된다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h3 id="e-kaavi-and-magic-spell">E. Kaavi and Magic Spell</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/E" target="\_blank">[문제 바로가기]</a></p>
+
+<h3 id="f-yui-and-mahjong-set">F. Yui and Mahjong Set</h3>
+<p><a href="https://codeforces.com/contest/1335/problem/F" target="\_blank">[문제 바로가기]</a></p>
+:ET
