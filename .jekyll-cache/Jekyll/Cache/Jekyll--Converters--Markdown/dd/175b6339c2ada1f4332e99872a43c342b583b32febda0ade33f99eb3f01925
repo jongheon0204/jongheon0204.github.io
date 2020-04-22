@@ -1,0 +1,73 @@
+I"�%<h2 id="a-coffee">A. Coffee</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_a" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이 6인 문자열(str)이 주어질때, str[2] == str[3] &amp;&amp; str[4] == str[5]조건을 만족하는지 검사하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">string</span> <span class="n">str</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">?</span> <span class="s">"Yes"</span><span class="o">:</span> <span class="s">"No"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-golden-coins">B. Golden Coins</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_b" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 N이 주어질때 500으로 나눈 몫에 1000을 곱한후 N % 500의 값에서 5의 몫을 구하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">m</span><span class="o">--</span><span class="p">){</span> <span class="kt">int</span> <span class="n">a</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">;</span> <span class="n">n</span><span class="o">-=</span><span class="n">a</span><span class="p">;}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-management">C. management</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_c" target="\_blank">[문제 바로가기]</a></p>
+
+<p>(N-1)개 노드의 부모 노드 정보가 주어질때 총 N개 노드의 자식 개수를 출력하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="kt">int</span> <span class="n">a</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">;</span> <span class="n">num</span><span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-sum-of-large-numbers">D. Sum of Large Numbers</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_d" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 N과 K가 주어질때, N+1개의 숫자들 중 K개 이상을 뽑아서 만들 수 있는 서로 다른 숫자의 개수를 구하는 문제이다(숫자가 너무 커지면 1000000007로 나눈 나머지를 출력)</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#define ll long long
+#define MOD 1000000007
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">minVal</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">maxVal</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">maxVal</span><span class="o">-</span><span class="n">minVal</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">MOD</span><span class="p">;</span>
+		<span class="n">k</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="e-active-infants">E. Active Infants</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_e" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="f-path-pass-i">F. path pass i</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_f" target="\_blank">[문제 바로가기]</a></p>
+:ET

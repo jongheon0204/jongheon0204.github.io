@@ -1,0 +1,167 @@
+I"�k<h2 id="a-coffee">A. Coffee</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_a" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이 6인 문자열(str)이 주어질때, str[2] == str[3] &amp;&amp; str[4] == str[5]조건을 만족하는지 검사하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">string</span> <span class="n">str</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">?</span> <span class="s">"Yes"</span><span class="o">:</span> <span class="s">"No"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-golden-coins">B. Golden Coins</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_b" target="\_blank">[문제 바로가기]</a></p>
+
+<p>숫자 N이 주어질때 500으로 나눈 몫에 1000을 곱한후 (N % 500)/5의 값을 구하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">;</span>	
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">500</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-traveling-salesman-around-lake">C. Traveling Salesman around Lake</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_c" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이K인 호수에 집이 여러개 존재할때 모든 집을 방문하기 위해서 걸어야하는 최솟값</p>
+
+<ul>
+  <li>i 번째 집에서 모든 집을 방문하는데 걸리는 길이의 최솟값을 구하는 문제</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">k</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">987654321</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">val</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">val</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">val</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	<span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">val</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">-</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">k</span> <span class="o">-</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-line">D. Line++</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_d" target="\_blank">[문제 바로가기]</a></p>
+
+<p>정점이 N개 존재하고 간선N-1개가 (i,i+1)정점을 연결한다고 할때, 정점 하나를 추가하여 얻을 수 있는 정점들간의 길이의 개수를 구하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#define vi vector&lt;int&gt;
+#define pii pair&lt;int,int&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">;</span>
+
+<span class="c1">// v번째 정점에서 시작해서 각 정점까지의 거리를 구한다</span>
+<span class="kt">void</span> <span class="nf">FindDepth</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isVisit</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dis</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>	
+	<span class="n">queue</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span> <span class="n">que</span><span class="p">;</span>
+	<span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+	<span class="n">isVisit</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">que</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+		<span class="kt">int</span> <span class="n">curX</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">().</span><span class="n">first</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">cur_val</span> <span class="o">=</span> <span class="n">que</span><span class="p">.</span><span class="n">front</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
+		<span class="n">que</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+		<span class="n">dis</span><span class="p">[</span><span class="n">cur_val</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">edge</span><span class="p">[</span><span class="n">curX</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">curX</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">isVisit</span><span class="p">[</span><span class="n">next</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="n">que</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">next</span><span class="p">,</span><span class="n">cur_val</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+			<span class="n">isVisit</span><span class="p">[</span><span class="n">next</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+<span class="p">}</span>	
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+	<span class="n">ans</span> <span class="o">=</span> <span class="n">vi</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="n">edge</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vi</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">edge</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">edge</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="n">FindDepth</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="p">);}</span>
+	<span class="c1">// 정점쌍이 (1,2), (2,1)와 같이 중복될 수 있으니 2로 나누어 주어야 한다</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="e-red-and-green-apples">E. Red and Green Apples</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_e" target="\_blank">[문제 바로가기]</a></p>
+
+<p>a개의 빨간색 사과와 b개의 초록색 사과, c개의 무색 사과가 존재한다 빨간색 사과와 초록색 사과를 X, Y개 먹으려고 할때 맛의 값의 총합이 가장 클때를 구하는 문제이다</p>
+
+<ul>
+  <li>무색사과는 빨간색 혹은 초록색으로 칠한 후 먹을 수 있다</li>
+  <li>먼저 빨간색 사과, 초록색 사과에서 값이 큰 X, Y개를 고른다</li>
+  <li>색이 있는 사과의 작은 값들과 무색 사과의 큰 값을 비교하여 무색 사과의 맛의 값이 더 큰 경우 변경한다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="n">ll</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="o">&gt;&gt;</span><span class="n">c</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="n">q</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="n">r</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">c</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">p</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">greater</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">());</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">q</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="n">greater</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">());</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">r</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">x</span><span class="p">)</span><span class="n">p</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">y</span><span class="p">)</span><span class="n">q</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+	<span class="c1">// 무색사과를 섭취하지 않았을 경우의 합</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">break</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">pcom</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">?</span> <span class="n">r</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">qcom</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">?</span> <span class="n">r</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">-</span> <span class="n">q</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">pcom</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">qcom</span> <span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">pcom</span> <span class="o">&gt;</span> <span class="n">qcom</span><span class="p">){</span>
+			<span class="n">ans</span> <span class="o">-=</span> <span class="n">p</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+			<span class="n">p</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="n">ans</span> <span class="o">-=</span> <span class="n">q</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+			<span class="n">q</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+		<span class="p">}</span>
+		<span class="n">ans</span> <span class="o">+=</span> <span class="n">r</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+		<span class="n">r</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="f-path-pass-i">F. path pass i</h2>
+<p><a href="https://atcoder.jp/contests/abc160/tasks/abc160_f" target="\_blank">[문제 바로가기]</a></p>
+:ET
