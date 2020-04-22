@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>MAVEN | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="MAVEN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Maven" />
+<meta property="og:description" content="Maven" />
+<link rel="canonical" href="http://localhost:4000/study/web_programming/2020/04/22/10.html" />
+<meta property="og:url" content="http://localhost:4000/study/web_programming/2020/04/22/10.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-22T17:22:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/study/web_programming/2020/04/22/10.html","description":"Maven","headline":"MAVEN","dateModified":"2020-04-22T17:22:00+09:00","datePublished":"2020-04-22T17:22:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/study/web_programming/2020/04/22/10.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/home.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body">
+		<header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Study</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/study/Web_Programming>Web Programming</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/judge>Online Judge Contest</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+
+		<main class="page-content" aria-label="Content">
+			<div class = "wrapper">
+	<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	
+	  <header class="post-header">
+	    <h1 class="post-title p-name" itemprop="name headline">10. MAVEN</h1>
+	    <p class="post-meta">
+	      <time class="dt-published" datetime="2020-04-22T17:22:00+09:00" itemprop="datePublished">Apr 22, 2020
+	      </time></p>
+	  </header>
+	
+	  <div class="post-content e-content" itemprop="articleBody">
+	    <h2 id="maven">Maven</h2>
+
+<ul>
+  <li>빌드, 패키징, 문서화, 테스트, git, 의존성관리, 배포 등의 작업을 손쉽게 관리할 수 있도록 한다</li>
+  <li>Coc(Convetion over Configuration)에 대해 이해해야 한다.</li>
+  <li>ex) JSTL을 사용할 때 .jar파일을 다운받는 대신에 dependency에 적어주면 된다.</li>
+</ul>
+
+<h3 id="01-maven-project-생성-및-설정">01. Maven Project 생성 및 설정</h3>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79959996-d081aa00-84bf-11ea-80f3-b7e5ec5b2f33.png" alt="Project 생성01" width="500px" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79960001-d1b2d700-84bf-11ea-854d-8d2a0175be09.png" alt="Project 생성02" width="500px" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79960004-d24b6d80-84bf-11ea-8b4a-8ad12d522720.png" alt="Project 생성03" width="500px" />
+<br />(WebApp을 선택해 주어야 한다)</p>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/79960008-d5def480-84bf-11ea-901e-38fdc1a8c490.png" alt="Project 생성04" width="500px" />
+<br />GroupId는 보통 자신의 사이트 주소를 거꾸로 쓴다</p>
+
+<p>이 과정을 거치면 Maven Project를 생성할 수 있다.
+<br />하지만 생성된 프로젝트는 JDK 1.5버전으로 설정되어 있기 때문에 이를 변경해 주어야 한다
+<img src="https://user-images.githubusercontent.com/17156386/79960014-d7a8b800-84bf-11ea-8c90-5756bc37b932.png" alt="Project 생성05" width="500px" /></p>
+
+<p>프로젝트에 존재하는 pom.xml파일의 build태그안에 다음과 같이 추가해준다</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugins&gt;</span>
+<span class="nt">&lt;plugin&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>3.6.1<span class="nt">&lt;/version&gt;</span>	
+	<span class="nt">&lt;configuration&gt;</span>
+		<span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+		<span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+	<span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</code></pre></div></div>
+
+<p>그후, Maven &gt; Update Project를 해준다
+<img src="https://user-images.githubusercontent.com/17156386/79960021-da0b1200-84bf-11ea-8a3d-b79f6e604e92.png" alt="Project 생성06" width="500px" /></p>
+
+<p>다음과 같이 Java Build Path Problems 오류가 나는 경우가 있는데
+<img src="https://user-images.githubusercontent.com/17156386/79962377-ec3a7f80-84c2-11ea-94ee-79a022924f5b.png" alt="Project 생성07" width="500px" /></p>
+
+<p>프로젝트 &gt; Properties 선택후 Java Build Path &gt; Libraries에서 JRE System Library를 제거한후<br />
+<img src="https://user-images.githubusercontent.com/17156386/79962383-ed6bac80-84c2-11ea-8e0e-5c981fbb17fd.png" alt="Project 생성08" width="500px" /></p>
+
+<p>Add Library버튼을 누른후 JRE System Library을 선택하고 Finish를 눌러 추가해준다
+<img src="https://user-images.githubusercontent.com/17156386/79962385-ee9cd980-84c2-11ea-8a12-874db035483a.png" alt="Project 생성09" width="500px" /></p>
+
+
+	  </div><a class="u-url" href="/study/web_programming/2020/04/22/10.html" hidden></a>
+	</article>
+</div>
+
+		</main><footer class="site-footer">
+		© 2020 Copyright: <a href = "https://github.com/jongheon0204/jekyll_theme_customizing" target = "_blank">Jongheon0204</a>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163795957-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163795957-1');
+</script>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>

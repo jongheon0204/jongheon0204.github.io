@@ -1,0 +1,19 @@
+I"�<h2 id="maven">Maven</h2>
+
+<ul>
+  <li>빌드, 패키징, 문서화, 테스트, git, 의존성관리, 배포 등의 작업을 손쉽게 관리할 수 있도록 한다</li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugins&gt;</span>
+<span class="nt">&lt;plugin&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>3.6.1<span class="nt">&lt;/version&gt;</span>	
+	<span class="nt">&lt;configuration&gt;</span>
+		<span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+		<span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+	<span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</code></pre></div></div>
+:ET
