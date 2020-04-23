@@ -1,0 +1,100 @@
+I"�0<h2 id="a-filling-diamonds">A. Filling Diamonds</h2>
+<p><a href="https://codeforces.com/contest/1339/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n이 주어질때, 4n-2개의 삼각형으로 이루어져 있는 도형을 마름모꼴 도형으로 채울수 있는 방법의 개수</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">sum</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">sum</span><span class="p">){</span>
+			<span class="n">i</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">/</span><span class="n">sum</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-balanced-array">B. Balanced Array</h2>
+<p><a href="https://codeforces.com/contest/1339/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이가 n인 숫자 배열에서 처음 n/2개 원소는 모두 짝수이고 이후 n/2개 원소는 모두 홀수라고 하였을때 짝수들의 합과 홀수들의 합이 동일하도록 배열을 만드는 문제이다</p>
+
+<ul>
+  <li>n/2이 홀수일 경우에는 배열을 만들 수 없다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">lsum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">rsum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">((</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"NO</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"YES</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">odd</span><span class="p">,</span><span class="n">even</span><span class="p">;</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+				<span class="n">even</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+				<span class="n">lsum</span> <span class="o">+=</span> <span class="n">even</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+			<span class="p">}</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+				<span class="n">odd</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>	
+				<span class="n">rsum</span> <span class="o">+=</span> <span class="n">odd</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+			<span class="p">}</span>
+			<span class="n">odd</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">lsum</span><span class="o">-</span><span class="n">rsum</span><span class="p">);</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">even</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">even</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">odd</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">odd</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-alternating-subsequence">C. Alternating Subsequence</h2>
+<p><a href="https://codeforces.com/contest/1339/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n개의 배열이 존재한다 , 옆 원소와 곱해 0보다 작은 배열들 중 길이가 가장 길면서 원소들의 합이 가장 큰 배열을 구하는 문제이다</p>
+
+<ul>
+  <li>연속한 0보다 작은 수, 0보다 큰 수들 중 가장 큰 수만 남기고 계산한다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">a</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">val</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">;</span>	
+			<span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+				<span class="n">ans</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
+				<span class="n">val</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="n">val</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">val</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">ans</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d--constant-palindrome-sum">D.  Constant Palindrome Sum</h2>
+<p><a href="https://codeforces.com/contest/1339/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="e-weights-distributing">E. Weights Distributing</h2>
+<p><a href="https://codeforces.com/contest/1339/problem/E" target="\_blank">[문제 바로가기]</a></p>
+:ET
