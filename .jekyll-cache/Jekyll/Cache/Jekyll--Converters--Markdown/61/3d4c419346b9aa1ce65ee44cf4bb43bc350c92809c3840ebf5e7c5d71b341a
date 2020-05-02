@@ -1,0 +1,102 @@
+I"�7<h2 id="a-phoenix-and-balance">A. Phoenix and Balance</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>2^1, 2^2, …, 2^n의 숫자들이 주어질때 이 숫자들을 두 그룹으로 나누었을때 그룹간 총합의 차이가 최소가 되도록 분류하는 문제(n은 짝수이다)</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="k">continue</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kt">int</span> <span class="n">first</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">),</span><span class="n">second</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">first</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span> 
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">second</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">first</span><span class="o">-</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-sorted-adjacent-differences">B. Sorted Adjacent Differences</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n개의 숫자가 주어졌을때 인접한 숫자들간의 차가 오른쪽으로 갈수록 같거나 커지도록 숫자들을 정렬하는 문제</p>
+
+<ul>
+  <li>주어진 숫자들을 정렬한 후 가운데 숫자를 출력한다</li>
+  <li>그후 오른쪽, 왼쪽 번갈아가면서 숫자를 출력</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">sort</span><span class="p">(</span><span class="n">num</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">num</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">num</span><span class="p">[</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">){</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">right</span> <span class="o">!=</span> <span class="n">n</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">num</span><span class="p">[</span><span class="n">right</span><span class="o">++</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+			<span class="p">}</span>	
+			<span class="k">else</span><span class="p">{</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">num</span><span class="p">[</span><span class="n">left</span><span class="o">--</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-powered-addition">C. Powered Addition</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n개의 숫자에 대해 (i+1)번째 원소는 i번째 원소보다 같거나 크도록 하기 위해서 더해야 하는 2^(x-1)값들중 x값이 가장 작을때의 값을 구하는 문제</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
+				<span class="n">ll</span> <span class="n">dif</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+				<span class="k">while</span><span class="p">(</span><span class="n">dif</span><span class="p">){</span> 
+					<span class="k">if</span><span class="p">(</span><span class="n">dif</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">j</span><span class="p">))</span>		
+						<span class="n">dif</span> <span class="o">^=</span> <span class="p">(</span><span class="mi">1ll</span> <span class="o">&lt;&lt;</span> <span class="n">j</span><span class="p">);</span>
+					<span class="n">j</span><span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+				<span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+			<span class="p">}</span>
+		<span class="p">}</span>	
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-edge-weight-assignment">D. Edge Weight Assignment</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="e-perfect-triples">E. Perfect Triples</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/E" target="\_blank">[문제 바로가기]</a></p>
+:ET

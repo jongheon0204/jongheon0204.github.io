@@ -1,0 +1,122 @@
+I"�F<h2 id="a-phoenix-and-balance">A. Phoenix and Balance</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>2^1, 2^2, …, 2^n의 숫자들이 주어질때 이 숫자들을 두 그룹으로 나누었을때 그룹간 총합의 차이가 최소가 되도록 분류하는 문제(n은 짝수이다)</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"2</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="k">continue</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="kt">int</span> <span class="n">first</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">),</span><span class="n">second</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">first</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span> 
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">second</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">first</span><span class="o">-</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-phoenix-and-beauty">B. Phoenix and Beauty</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>정수 n과 k가 주어지고 길이가 n인 배열이 주어질때 배열의 연속된 k개의 원소의 합이 모두 동일하도록 만든후 출력하는 문제</p>
+
+<ul>
+  <li>배열에 주어지는 서로 다른 숫자가 k개 보다 많으면 출력할 수 없다.</li>
+  <li>k개의 서로 다른 숫자를 n번 출력하면 된다</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">sor</span><span class="p">,</span><span class="n">val</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">val</span><span class="p">[</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">sor</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">sor</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">){</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"-1</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="k">continue</span><span class="p">;}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">sor</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">k</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">sor</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">*</span><span class="n">sor</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">sor</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">sor</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-phoenix-and-distribution">C. Phoenix and Distribution</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이가 n인 문자열과 정수 k가 주어진다.
+<br />문자열을 적절히 분리하여 k개의 문자열을 만들 때 그 문자들중에 가장 값이 큰 값이 최소가 되도록 하는 값을 구하여라</p>
+
+<ul>
+  <li>문자열을 문자 순서대로 정렬한 후 앞의 문자 k개가 전부 같은지 다른지에 따라 다르게 출력</li>
+  <li>다를 경우에는 k번째 문자만 출력해준다</li>
+  <li>같은 경우에는 k번째 이후의 문자들에 따라서 다르게 출력</li>
+  <li>k번째 이후 문자들 중에 다른 문자가 나오면 k번째 문자부터 차례대로 출력</li>
+  <li>다른 문자가 나오지 않으면 0번째 문자부터 k만큼 더한 인덱스 문자를 출력</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#define vi vector&lt;int&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+	   	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>	
+		<span class="n">sort</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">str</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+			<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]){</span>
+				<span class="kt">bool</span> <span class="n">isDif</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+				<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+					<span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
+						<span class="n">isDif</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+						<span class="k">break</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">isDif</span><span class="p">){</span>
+					<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+					<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="n">k</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-phoenix-and-science">D. Phoenix and Science</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="e-phoenix-and-berries">E. Phoenix and Berries</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/E" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="f-phoenix-and-berries">F. Phoenix and Berries</h2>
+<p><a href="https://codeforces.com/contest/1348/problem/E" target="\_blank">[문제 바로가기]</a></p>
+:ET
