@@ -1,0 +1,131 @@
+I"�$<p>JavaScript의 버전은 ECMAScript(ES)의 버전에 따라 결정된다. ex) ES5, ES6</p>
+
+<h2 id="1-변수">1. 변수</h2>
+
+<ul>
+  <li>var, let, const로 선언할 수 있다. (scope 변수의 유효범위가 달라진다)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">);</span> <span class="c1">// A B C</span>
+</code></pre></div></div>
+
+<h2 id="2-연산자">2. 연산자</h2>
+
+<ul>
+  <li>논리 연산자 (AND, OR, XOR 등)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">;</span>
+<span class="c1">// name변수에 값이 존재한다면 name을 값이 없다면 'codesquad'를 넣어준다.</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">||</span> <span class="dl">"</span><span class="s2">codesquad';
+</span></code></pre></div></div>
+
+<ul>
+  <li>삼항 연산자</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="k">return</span> <span class="p">(</span><span class="nx">data</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">fail</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>비교연산자</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// '==='은 type 까지 검사를 한다.</span>
+<span class="kc">null</span> <span class="o">==</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="kc">null</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<h2 id="3-type">3. Type</h2>
+
+<ul>
+  <li>undefined, null, boolean, number, string, object, function의 타입이 존재한다.</li>
+  <li>간단한 기본타입은 typeof로 확인이 가능하다.</li>
+  <li>toString.call 메서드를 통해 타입을 확인할 수도 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">typeof</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// string</span>
+<span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// [object String]</span>
+</code></pre></div></div>
+
+<h2 id="4-문자열-처리">4. 문자열 처리</h2>
+
+<ul>
+  <li>JavaScript 에서는 문자와 문자열이 모두 같은 타입이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">ab.cd</span><span class="dl">"</span><span class="p">.</span><span class="nx">repalce</span><span class="p">(</span><span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// ab:cd</span>
+<span class="dl">"</span><span class="s2">ab.cd</span><span class="dl">"</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="s2">:</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// ["ab","cd"]</span>
+</code></pre></div></div>
+
+<h2 id="5-함수">5. 함수</h2>
+
+<ul>
+  <li>파라미터의 개수와 인자의 개수가 일치하지 않아도 오류가 나지 않는다.</li>
+  <li>값을 넣지 않은 파라미터는 undefined이 된다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">printName</span><span class="p">(</span><span class="nx">firstname</span><span class="p">){</span>
+	<span class="k">return</span> <span class="nx">firstname</span><span class="p">;</span>
+<span class="p">}</span>	
+<span class="nx">printName</span><span class="p">();</span> <span class="c1">// undefined</span>
+<span class="nx">printName</span><span class="p">(</span><span class="dl">"</span><span class="s2">Kim</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// Kim</span>
+<span class="nx">printName</span><span class="p">(</span><span class="dl">"</span><span class="s2">Kim</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Jong</span><span class="dl">"</span><span class="p">)</span> <span class="c1">// Kim</span>
+</code></pre></div></div>
+
+<h3 id="01-호이스팅">01. 호이스팅</h3>
+<blockquote>
+  <p>함수가 실행되기 전 필요한 변수들을 미리 선언해 둔다.</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// printName 변수가 밑에 있지만 함수를 사용하기 위해서 printName이undeifned로 정의되어 있다.</span>
+<span class="nx">printName</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">printName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="02-반환값">02. 반환값</h3>
+<ul>
+  <li>아무것도 반환하지 않는 경우 undefined를 반환.</li>
+</ul>
+
+<h3 id="03-arguments-속성">03. arguments 속성</h3>
+<blockquote>
+  <p>함수 실행시 생성되는 특별한 지역변수</p>
+</blockquote>
+
+<ul>
+  <li>매개변수로 넘어온 인자들은 arguments에 저장이 된다.</li>
+  <li>배열 형태로 접근이 가능하지만 배열타입은 아니다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// {'0' : 1, '1' : 2, '2' : 3}</span>
+</code></pre></div></div>
+
+<h3 id="04-arrow-function">04. Arrow Function</h3>
+<blockquote>
+  <p>ES5에 새로 추가된 기능으로서 간단한 함수를 표현한다</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 밑의 두 getName은 동일한 기능을 한다.</span>
+<span class="kd">function</span> <span class="nx">getName</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span> <span class="k">return</span> <span class="dl">"</span><span class="s2">Kim </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;}</span>
+
+<span class="kd">var</span> <span class="nx">getName</span> <span class="o">=</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">Kim </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="6-함수-호출">6. 함수 호출</h2>
+
+<ul>
+  <li>함수가 실행될 때마다 해당 함수는 call stack에 저장이 되고, 함수 종료시 call stack에서 pop된다.</li>
+  <li>call stack이 꽉 찰경우 실행되지 않고 오류가 발생한다.(Maximum call stack size exceeded)</li>
+</ul>
+:ET
