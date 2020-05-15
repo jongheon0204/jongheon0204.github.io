@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/blog.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Round 642 (Div 3) | Jongheon’s Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Round 642 (Div 3)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A. Most Unstable Array [문제 바로가기]" />
+<meta property="og:description" content="A. Most Unstable Array [문제 바로가기]" />
+<link rel="canonical" href="http://localhost:4000/algorithm/judge/2020/05/15/CF642.html" />
+<meta property="og:url" content="http://localhost:4000/algorithm/judge/2020/05/15/CF642.html" />
+<meta property="og:site_name" content="Jongheon’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-15T20:26:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/algorithm/judge/2020/05/15/CF642.html","headline":"Round 642 (Div 3)","dateModified":"2020-05-15T20:26:00+09:00","datePublished":"2020-05-15T20:26:00+09:00","description":"A. Most Unstable Array [문제 바로가기]","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/algorithm/judge/2020/05/15/CF642.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/home.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Jongheon's Blog" /></head>
+<body id = "blog-body">
+		<header class="site-header" role="banner">
+	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+		
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  ">
+			
+				<a class = "nav-link" href="/">Home</a>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/project/github_blog>Github Blog</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item  dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Study</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/study/Web_Programming>Web Programming</a>
+				
+				</div>
+			
+			</li>
+		
+			
+
+			
+
+			
+
+			
+
+			
+
+			<li class = "nav-item active dropdown">
+			
+				<a class = "nav-link dropdown-toggle" id="navbarDropdown" role = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Algorithm</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				
+				
+					<a class = "dropdown-item" href=/algorithm/baekjoon>Baekjoon</a>
+				
+					<a class = "dropdown-item" href=/algorithm/judge>Online Judge Contest</a>
+				
+				</div>
+			
+			</li>
+		
+		</ul>
+	</div>
+</nav>
+
+</header>
+
+		<main class="page-content" aria-label="Content">
+			<div class = "wrapper">
+	<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	
+	  <header class="post-header">
+	    <h1 class="post-title p-name" itemprop="name headline">Round 642 (Div 3)</h1>
+	    <p class="post-meta">
+	      <time class="dt-published" datetime="2020-05-15T20:26:00+09:00" itemprop="datePublished">May 15, 2020
+	      </time></p>
+	  </header>
+	
+	  <div class="post-content e-content" itemprop="articleBody">
+	    <h2 id="a-most-unstable-array">A. Most Unstable Array</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/A" target="\_blank">[문제 바로가기]</a></p>
+
+<p>원소들의 총 합이 m인 길이 n배열이 있을때 abs(ai - ai+1)의 최대값을 구하는 문제이다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#define ll long long
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="mi">0</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+		<span class="k">else</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">*</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="b-two-arrays-and-swaps">B. Two Arrays And Swaps</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/B" target="\_blank">[문제 바로가기]</a></p>
+
+<p>길이가 n인 배열 a, b가 존재한다. a의 원소들 중 하나와 b의 원소들중 하나를 교체가 가능하며 최대 k번 교체를 한다고 할때 a배열의 총합이 최대가 되도록 교체하는 문제이다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="p">}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="n">sort</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]){</span>
+				<span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+				<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">sum</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="c-board-moves">C. Board Moves</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/C" target="\_blank">[문제 바로가기]</a></p>
+
+<p>n x n(n은 홀수) 크기의 보드가 주어질때 모든 셀이 한 곳으로 이동할때 몇번 이동해야 하는지 구하는 문제이다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#define ll long long
+#define SIZE 500001
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">board</span><span class="p">(</span><span class="n">SIZE</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">board</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">ll</span> <span class="n">cur</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span> 
+		<span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">cur</span> <span class="o">*</span> <span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">board</span><span class="p">[</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="d-constructing-the-array">D. Constructing the Array</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/D" target="\_blank">[문제 바로가기]</a></p>
+
+<p>0이 연속적으로 있는 구간들에 대해서 길이가 가장 긴 구간을 [l;r]이라고 할 때 (l+r)/2 or (l+r-1)/2번째 인덱스에 값을 차례대로 넣어주는 문제이다</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Binary</span><span class="p">{</span>
+	<span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">d</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">cmp</span><span class="p">{</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Binary</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="n">Binary</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">d</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">d</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">l</span><span class="p">;</span>
+		<span class="k">else</span> <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">d</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">Push</span><span class="p">(</span><span class="n">Binary</span> <span class="o">&amp;</span> <span class="n">binary</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+	<span class="n">binary</span><span class="p">.</span><span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+	<span class="n">binary</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+	<span class="n">binary</span><span class="p">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">ios_base</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span> <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">tc</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">tc</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">tc</span><span class="o">--</span><span class="p">){</span>
+		<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+		<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">Binary</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Binary</span><span class="o">&gt;</span><span class="p">,</span><span class="n">cmp</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
+		<span class="n">Binary</span> <span class="n">bi</span><span class="p">;</span>
+		<span class="n">Push</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">bi</span><span class="p">);</span>
+		<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">pq</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+			<span class="n">Binary</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">pq</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+			<span class="n">pq</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+			<span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">((</span><span class="n">cur</span><span class="p">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">cur</span><span class="p">.</span><span class="n">l</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">){</span>
+				<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">l</span> <span class="o">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">r</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">l</span> <span class="o">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="n">ans</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">++</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">l</span> <span class="o">==</span> <span class="n">cur</span><span class="p">.</span><span class="n">r</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+			<span class="n">Binary</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">cur</span><span class="p">.</span><span class="n">l</span><span class="p">){</span>
+				<span class="n">Push</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">cur</span><span class="p">.</span><span class="n">l</span><span class="p">,</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">idx</span><span class="o">-</span><span class="n">cur</span><span class="p">.</span><span class="n">l</span><span class="p">);</span>
+				<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">cur</span><span class="p">.</span><span class="n">r</span><span class="p">){</span>
+				<span class="n">Push</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">cur</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="n">cur</span><span class="p">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">idx</span><span class="p">);</span>
+				<span class="n">pq</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">' '</span><span class="p">;</span>
+		<span class="p">}</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="sc">'\n'</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="e-k-periodic-garland">E. K-periodic Garland</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/E" target="\_blank">[문제 바로가기]</a></p>
+
+<h2 id="f--decreasing-heights">F.  Decreasing Heights</h2>
+<p><a href="https://codeforces.com/contest/1353/problem/F" target="\_blank">[문제 바로가기]</a></p>
+
+	  </div><a class="u-url" href="/algorithm/judge/2020/05/15/CF642.html" hidden></a>
+	</article>
+</div>
+
+		</main><footer class="site-footer">
+		© 2020 Copyright: <a href = "https://github.com/jongheon0204/jekyll_theme_customizing" target = "_blank">Jongheon0204</a>
+</footer>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163795957-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163795957-1');
+</script>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+I"�<p>MySQL을 사용하기 위해서는 먼저 설치를 하여야 합니다.
+<br /><a href="https://whitepaek.tistory.com/16" target="\_blank">(macOS)MySQL 설치 및 설정</a></p>
+
+<h2 id="jdbc">JDBC</h2>
+
+<p>JDBC를 사용하기 위해서는 MySQL에서 다운로드가 필요하지만 이전에 배운 Maven의 의존성을 통해 코드 몇줄만으로 사용이 가능합니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>   
+	<span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>   
+	<span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>5.1.45<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="01-사용-방법">01. 사용 방법</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">java.sql.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DB</span><span class="o">{</span>
+	<span class="c1">// userSSL을 설정하지 않으면 경고창이 뜬다</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">String</span> <span class="n">dburl</span> <span class="o">=</span> <span class="s">"jdbc:mysql://localhost:3306/{DB이름}?useSSL=false"</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">String</span> <span class="n">dbUser</span> <span class="o">=</span> <span class="s">"root"</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">String</span> <span class="n">dbPwd</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">Connect</span><span class="o">(){</span>
+		<span class="c1">// SQL Query의 결과를 담을 ResultSet</span>
+		<span class="nc">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+	
+		<span class="k">try</span><span class="o">{</span>
+			<span class="c1">// 드라이버에 로드하기</span>
+			<span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"com.mysql.jdbc.Driver"</span><span class="o">);</span>
+			<span class="c1">// DB접속정보를 통해 Connection 객체 얻기</span>
+			<span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">dburl</span><span class="o">,</span><span class="n">dbUser</span><span class="o">,</span><span class="n">dbPwd</span><span class="o">);</span>
+			<span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"select * from User"</span><span class="o">;</span>
+			<span class="nc">PreparedStatement</span> <span class="n">ps</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
+			<span class="n">rs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
+
+			<span class="k">while</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">()){</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"id : "</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"id"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"name : "</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"name"</span><span class="o">));</span>
+			<span class="o">}</span>
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">rs</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+				<span class="k">try</span><span class="o">{</span><span class="n">rs</span><span class="o">.</span><span class="na">close</span><span class="o">();}</span>
+				<span class="k">catch</span><span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">){</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">ps</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+				<span class="k">try</span><span class="o">{</span><span class="n">ps</span><span class="o">.</span><span class="na">close</span><span class="o">();}</span>
+				<span class="k">catch</span><span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">){</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">conn</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+				<span class="k">try</span><span class="o">{</span><span class="n">conn</span><span class="o">.</span><span class="na">close</span><span class="o">();}</span>
+				<span class="k">catch</span><span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">){</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="02-특징">02. 특징</h3>
+
+<ul>
+  <li>DB관련 객체 사용후 꼭 제거를 해주어야 한다</li>
+  <li>생성순서는 Connection, PreparedStatement, ResultSet이며 제거 순서는 생성순서 반대로 해주면 된다</li>
+  <li>SQL Query실행후 반환값은 결과 테이블을 가르키는 포인터다. 이는 결과 테이블의 크기가 큰 경우에 대비한 것이다</li>
+  <li>SQL Query문에 ‘?’를 사용해서 동적으로 사용할 수 있다</li>
+  <li>ResultSet 객체를 받은 후 get함수를 통해 값을 얻어올 수 있다 이때 함수의 매개변수는 인덱스값 또는 속성명을 주면된다</li>
+</ul>
+
+:ET

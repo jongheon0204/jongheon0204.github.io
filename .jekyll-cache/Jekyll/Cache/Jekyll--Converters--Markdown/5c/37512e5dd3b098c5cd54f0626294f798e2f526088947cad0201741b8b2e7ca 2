@@ -1,0 +1,184 @@
+I"}H<p>자바 웹 어플리케이션 구성요소 중 <strong>동적</strong>인 처리를 한 프로그램은 무엇일까? 바로 <strong>서블릿(Servlet)</strong>이다.</p>
+
+<h2 id="servlet-작성방법">Servlet 작성방법</h2>
+
+<p>Servlet을 작성하는 방법은 Dynamic web modules version 3.0 기준으로 나뉜다.</p>
+
+<ol>
+  <li><strong>3.0 이상</strong>
+    <ul>
+      <li>자바 어노테이션을 통해서 Servlet을 정의</li>
+      <li>Servlet 클래스 위에서 정의
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@WebServlet</span><span class="o">(</span><span class="s">"/ten"</span><span class="o">)</span> <span class="c1">// Url Mapping을 통해 '/ten'이 Url이 된다.</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>3.0 미만</strong>
+    <ul>
+      <li>Servlet 생성시, web.xml에 Servlet이 정의된다.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- WebContent/WEB_INF/web.xml --&gt;</span>
+<span class="nt">&lt;servlet&gt;</span>
+	<span class="nt">&lt;description&gt;&lt;/description&gt;</span>
+	<span class="nt">&lt;display-name&gt;</span>TenServlet<span class="nt">&lt;/display-name&gt;</span>
+	<span class="nt">&lt;servlet-name&gt;</span>TenServlet<span class="nt">&lt;/servlet-name&gt;</span>
+	<span class="nt">&lt;servlet-class&gt;</span>exam.Tenservlet<span class="nt">&lt;/servlet-class&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+<span class="nt">&lt;servlet-mapping&gt;</span>
+<span class="c">&lt;!-- Servlet의 Url Mapping --&gt;</span>
+	<span class="nt">&lt;servlet-name&gt;</span>TenServlet<span class="nt">&lt;/servlet-name&gt;</span>
+	<span class="nt">&lt;url-parretn&gt;</span>/ten<span class="nt">&lt;/url-parretn&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div></div>
+
+<h2 id="servlet-생명주기lifecycle">Servlet 생명주기(LifeCycle)</h2>
+
+<p>Servlet 객체의 생명주기를 다음과 같은 3가지 메소드 오버로딩을 통해 알아본다.</p>
+<ol>
+  <li>init()</li>
+  <li>service(request,response)</li>
+  <li>destory()</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">LifeCycleServlet</span><span class="o">(){</span>
+	<span class="kd">super</span><span class="o">();</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"LifeCycleServlet"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="nc">ServletConfig</span> <span class="n">config</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">{</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"init"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destory</span><span class="o">(){</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"destory"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span><span class="o">{</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"service"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위의 코드 작성후, Run On Server를 통해 실행을 하면 Servlet 객체가 생성이 되면서 콘솔창에 다음과 같이 출력 결과가 나오게 된다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LifeCycleServlet
+init
+service
+</code></pre></div></div>
+<p>이를 통해 알수 있는 점은 실행시, Servlet 객체를 생성하기 위해 LifeCycleServlet, init객체가 호출된 후, service() 메서드가 실행이 된다.
+<br />여기서 중요한 점은 웹 사이트를 새로고침 할 때마다, service가 출력이 된다는 점이다.이는 클라이언트가 요청을 할 때마다 service() 메서드를 호출한다는 것을 알 수 있다.
+<br />destory() 메서드는 여기서 호출이 되지 않았지만 Servlet 변경같은 상황이 발생시, destory() 메서드로 인해 Servlet 객체가 제거된다.</p>
+
+<p>즉 Servlet의 생명주기는 다음과 같다.</p>
+<ol>
+  <li>Servlet 요청이 있을시, WAS는 해당 Servlet이 메모리에 적재되어 있는지 확인한다.</li>
+  <li>메모리에 적재되어 있을시, service() 메소드를 실행한다.</li>
+  <li>메모리에 적재되어 있지 않을시, servlet 객체를 생성하여 메모리에 적재하고 init() 메소드를 실행한다.</li>
+  <li>웹이 갱신되거나, WAS가 종료되는 상황이 발생시 destory() 메소드가 실행된다.</li>
+</ol>
+
+<h2 id="request-response-객체">Request, Response 객체</h2>
+
+<p>WAS는 웹 브라우저로부터 servlet 요청을 받을시, 다음과 같은 일을 수행한다.</p>
+<ul>
+  <li>HttpServletRequest객체 생성(요청 정보를 저장한 객체)</li>
+  <li>HttpServletResponse객체 생성(웹 브라우저에게 응답을 보낼 객체)</li>
+  <li>위 두 객체를 생성 후 servlet에 전달.</li>
+</ul>
+
+<p>이렇게 전달된 두 객체에 저장된 정보는 3가지 방법을 통해 확인할 수 있다.</p>
+
+<h3 id="01-파라미터-읽어-들이기">01. 파라미터 읽어 들이기</h3>
+<blockquote>
+  <p>Url 주소에 들어있는 파라미터의 정보를 읽는 방법.</p>
+</blockquote>
+
+<p>ex) http://localhost:8080/firstweb/param?name=kim&amp;age=5</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+	 <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span>
+	 <span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;html&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;head&gt;&lt;title&gt;form&lt;/title&gt;&lt;/head&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;body&gt;"</span><span class="o">);</span> 
+
+	 <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"name"</span><span class="o">);</span>
+	 <span class="nc">String</span> <span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"age"</span><span class="o">);</span> 
+	 
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name : "</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age : "</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span>
+ 	
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/body&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/html&gt;"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="02-헤더-정보-읽기">02. 헤더 정보 읽기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+	 <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);</span>
+	 <span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;html&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;head&gt;&lt;title&gt;form&lt;/title&gt;&lt;/head&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;body&gt;"</span><span class="o">);</span>
+ 
+	<span class="c1">// request에 있는 모든 header의 이름을 Enumeration에 저장한다.</span>
+	 <span class="nc">Enumeration</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">headerNames</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeaderNames</span><span class="o">();</span>
+	 <span class="k">while</span><span class="o">(</span><span class="n">headerNames</span><span class="o">.</span><span class="na">hasMoreElements</span><span class="o">())</span> <span class="o">{</span>
+		 <span class="nc">String</span> <span class="n">headerName</span> <span class="o">=</span> <span class="n">headerNames</span><span class="o">.</span><span class="na">nextElement</span><span class="o">();</span>
+		 <span class="nc">String</span> <span class="n">headerValue</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="n">headerName</span><span class="o">);</span>
+		 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">headerName</span> <span class="o">+</span> <span class="s">" : "</span> <span class="o">+</span> <span class="n">headerValue</span> <span class="o">+</span> <span class="s">" &lt;br&gt;"</span><span class="o">);</span>
+	 <span class="o">}</span> 
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/body&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/html&gt;"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78450282-84a9c500-76b8-11ea-9e11-ebac07a9b07f.png" alt="header" /></p>
+
+<h3 id="03-그외-요청정보-출력">03. 그외 요청정보 출력</h3>
+
+<ul>
+  <li>contentPath : Project의 이름으로 변경이 가능하다.</li>
+  <li>remoteAddr : 웹 페이지에 접속한 클라이언트의 ip 주소이다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+	 <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html"</span><span class="o">);;</span>
+	 <span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;html&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;head&gt;&lt;title&gt;info&lt;/title&gt;&lt;/head&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;body&gt;"</span><span class="o">);</span> 
+	
+	 <span class="nc">String</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">();</span>
+	 <span class="nc">StringBuffer</span> <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURL</span><span class="o">();</span>
+	 <span class="nc">String</span> <span class="n">contentPath</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getContextPath</span><span class="o">();</span>
+	 <span class="nc">String</span> <span class="n">remoteAddr</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">();</span> 
+	
+ 	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"uri : "</span> <span class="o">+</span> <span class="n">uri</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"url : "</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"contentPath : "</span> <span class="o">+</span> <span class="n">contentPath</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"remoteAddr : "</span> <span class="o">+</span> <span class="n">remoteAddr</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="o">);</span> 
+
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/body&gt;"</span><span class="o">);</span>
+	 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&lt;/html&gt;"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/17156386/78450291-91c6b400-76b8-11ea-9dc8-b774168634e9.png" alt="other info" /></p>
+
+<h2 id="추가">추가</h2>
+
+<ol>
+  <li>Servlet은 HttpServlet 클래스를 상속받는다.</li>
+  <li>웹 페이지를 개발할 때는 JSP와 Servlet을 조화롭게 사용해야 한다.</li>
+  <li>클라이언트가 Get 요청시 doGet(request,response) 메소드가, Post 요청시 doPost(request,response) 메소드가 실행이된다.</li>
+  <li>Method Override : Source -&gt; Override/Implement Method 에서 Override할 Method 선택</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">"text/html;charset=utf-8"</span><span class="o">);</span> <span class="c1">// 응답으로 보낼 타입 설정(html을 text로 보낸다.</span>
+<span class="nc">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">()</span> <span class="c1">// PrintWriter객체를 통해 웹 페이지에 html 전송</span>
+</code></pre></div></div>
+:ET
